@@ -16,12 +16,11 @@ namespace Core
 
         public bool HasValue { get { return !String.IsNullOrEmpty(_value); } }
 
+
         public Argument(string variable)
         {
             Variable = variable;
         }
-        
-
         public Argument(string variable, string value)
         {
             Variable = variable;

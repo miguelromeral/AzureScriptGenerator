@@ -9,15 +9,14 @@ namespace Core.cmdlets
 {
     public class Install_Module : Cmdlet
     {
-        public Install_Module(string module) : base()
+        public Install_Module(string module) : base("Install-Module")
         {
-            Command = "Install-Module";
             Value = module;
         }
 
         public void SetForce()
         {
-            Arguments.Add(new Argument("-Force"));
+            AddArgument(new Argument("-Force"));
         }
     }
 }

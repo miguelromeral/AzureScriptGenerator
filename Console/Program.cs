@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Core;
 using Core.cmdlets;
+using Core.ControlStructures;
 
 namespace Console
 {
@@ -17,10 +18,12 @@ namespace Console
                 Description = "Script test"
             };
 
-            script.AddCommand(Library.InstallModule_AzureRM());
-            script.AddCommand(new Login_AzureRMAccount());
+            var ifelse = Library.CheckIfModuleExists("AzureRM", true);
+            ifelse.AddTrueStatement(new Cmdlet("Login-AzureRMAccount"));
+            script.AddCommand(ifelse);
 
             System.Console.WriteLine(script);
+            System.Console.ReadKey();
         }
     }
 }

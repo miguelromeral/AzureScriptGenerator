@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core
 {
-    public abstract class Cmdlet
+    public class Cmdlet : Command
     {
         private string _variable;
         public string Variable { get { return HasVariable ? "$" + _variable : String.Empty; } set { _variable = value; } }
@@ -22,20 +22,45 @@ namespace Core
         public List<Argument> Arguments { get; set; }
 
 
-        public Cmdlet()
+
+        public Cmdlet(string command)
         {
+            Command = command;
+            Arguments = new List<Argument>();
+        }
+        public Cmdlet(string command, string value)
+        {
+            Command = command;
+            Value = value;
             Arguments = new List<Argument>();
         }
 
 
+        public void AddArgument(Argument arg)
+        {
+            Arguments.Add(arg);
+        }
+
+
+
+
         public override string ToString()
         {
-            string text = Comment + Script.NL;
+            string text = IdentText();
+            if (!String.IsNullOrEmpty(Comment))
+            {
+                text += Comment + Script.NL + IdentText(Ident);
+            }
+            text += Command;
+            if (!String.IsNullOrEmpty(Value))
+            {
+                text += " " + Value;
+            }
             if (HasVariable)
             {
-                text += Variable + " = ";
+                text += " " + Variable + " = ";
             }
-            text += Command + " " + Value + " " + PrintArguments();
+            text += PrintArguments();
 
             return text;
         }
@@ -45,10 +70,9 @@ namespace Core
             string text = "";
             foreach(var arg in Arguments)
             {
-                text += arg.Variable;
+                text += " " + arg.Variable;
                 if(arg.HasValue)
-                    text += "=" + arg.Value;
-                text += " ";
+                    text += " " + arg.Value;
             }
             return text;
         }

@@ -13,29 +13,26 @@ namespace Core
         private string _description;
         public string Description { get { return String.IsNullOrEmpty(_description) ? "Script generated using AzureScriptGenerator." : _description; } set { _description = value; } }
         
-        public List<Cmdlet> Content { get; set; }
+        public List<Command> Content { get; set; }
         
 
         public Script()
         {
             Author = "MiguelRomeral";
-            Content = new List<Cmdlet>();
+            Content = new List<Command>();
         }
         
-        public void AddCommand(Cmdlet cmdlet)
+        public void AddCommand(Command cmdlet)
         {
             Content.Add(cmdlet);
         }
-
-        public bool RemoveCommand(Cmdlet cmdlet)
-        {
-            return Content.Remove(cmdlet);
-        }
+        
 
 
         public static string NL { get { return Environment.NewLine; } }
 
         private static string Separator { get { return "########################################################"; } }
+
 
         private string Header {
             get
