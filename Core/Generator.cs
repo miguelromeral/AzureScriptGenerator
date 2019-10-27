@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Core.Built;
-using Core.ControlStructures;
+using Core.Statements;
 
 namespace Core
 {
@@ -19,11 +19,20 @@ namespace Core
             return cl;
         }
 
-        public static ConditionalIf CheckIfModuleExists(string module, bool installifnot = true)
+        public static List<Command> CheckIfModuleExists(string module, string variablename, bool installifnot = true)
         {
+            var assign = new Assignment(variablename, module)
+            {
+                Comment = "We check if the module " + module + " exists."
+            };
+            var variable = assign.Variable.ToString();
+
+            var lista = new List<Command>();
+            lista.Add(assign);
+
             var command = new Statement("Get-Module");
             command.AddArgument(new Argument("-ListAvailable"));
-            command.AddArgument(new Argument("-Name", module));
+            command.AddArgument(new Argument("-Name", variable));
 
             var cond = new ConditionalIf(command)
             {
@@ -33,7 +42,7 @@ namespace Core
             if (installifnot)
             {
                 cond.AddTrueStatement(new WriteHost("Installing the module '"+module+"'."));
-                cond.AddTrueStatement(new Statement(Generator.GetCmdletCommand(Cmdlet.InstallModule), module));
+                cond.AddTrueStatement(new Statement(Generator.GetCmdletCommand(Cmdlet.InstallModule), variable));
             }
             else
             {
@@ -41,8 +50,9 @@ namespace Core
             }
 
             cond.AddFalseStatement(new WriteHost("Tthe module '" + module + "' is already installed."));
+            lista.Add(cond);
 
-            return cond;
+            return lista;
         }
 
 

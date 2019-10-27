@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.ControlStructures
+namespace Core.Statements
 {
     public class ConditionalIf : Command
     {

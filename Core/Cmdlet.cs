@@ -14,5 +14,8 @@ namespace Core
 
         [Description("Write-Host")]
         WriteHost,
+
+        [Description("New-AzureRmResourceGroup")]
+        NewRG,
     }
 }

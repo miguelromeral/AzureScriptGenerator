@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core;
-using Core.ControlStructures;
+using Core.Statements;
+using Core.Built;
 
 namespace Console
 {
@@ -18,9 +19,11 @@ namespace Console
                 Description = "Script test"
             };
 
-            var ifelse = Generator.CheckIfModuleExists("AzureRM", true);
+            var ifelse = Generator.CheckIfModuleExists("AzureRM", "azurerm", true);
             script.AddCommand(ifelse);
             script.AddCommand(new Statement("Login-AzureRMAccount"));
+            script.AddCommand(new ResourceGroup("testing"));
+
 
             System.Console.WriteLine(script);
 

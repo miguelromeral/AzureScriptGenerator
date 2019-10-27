@@ -12,6 +12,9 @@ namespace Core
         
         public int blockID { get; set; }
 
+        public string Comment { get; set; }
+
+
 
         public static string IdentText(int level)
         {
@@ -31,6 +34,15 @@ namespace Core
         public string NewLine()
         {
             return Script.NL + IdentText();
+        }
+
+        public string PrintComment()
+        {
+            if (!String.IsNullOrEmpty(Comment))
+            {
+                return IdentText() + "# " + Comment + NewLine();
+            }
+            return "";
         }
     }
 }

@@ -7,14 +7,7 @@ using System.Threading.Tasks;
 namespace Core
 {
     public class Statement : Command
-    {
-        private string _variable;
-        public string Variable { get { return HasVariable ? "$" + _variable : String.Empty; } set { _variable = value; } }
-
-        public string Comment { get; set; }
-
-        public bool HasVariable { get { return !String.IsNullOrEmpty(_variable); } }
-
+    {   
         public string Command { get; set; }
 
         public string Value { get; set; }
@@ -59,10 +52,6 @@ namespace Core
             if (!String.IsNullOrEmpty(Value))
             {
                 text += " " + Value;
-            }
-            if (HasVariable)
-            {
-                text += " " + Variable + " = ";
             }
             text += PrintArguments();
 

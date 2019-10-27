@@ -26,6 +26,13 @@ namespace Core
         {
             Content.Add(cmdlet);
         }
+        public void AddCommand(List<Command> commands)
+        {
+            foreach(var c in commands)
+            {
+                Content.Add(c);
+            }
+        }
         
 
 

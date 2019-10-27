@@ -42,14 +42,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Argument.cs" />
+    <Compile Include="Built\ResourceGroup.cs" />
     <Compile Include="Built\WriteHost.cs" />
     <Compile Include="Statement.cs" />
-    <Compile Include="ControlStructures\ConditionalIf.cs" />
+    <Compile Include="Statements\Assignment.cs" />
+    <Compile Include="Statements\ConditionalIf.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="Generator.cs" />
     <Compile Include="Cmdlet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Script.cs" />
+    <Compile Include="Statements\Variable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
