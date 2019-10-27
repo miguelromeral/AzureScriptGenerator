@@ -10,11 +10,15 @@ namespace Core
     {
         public string Author { get; set; }
         
+        private string _description;
+        public string Description { get { return String.IsNullOrEmpty(_description) ? "Script generated using AzureScriptGenerator." : _description; } set { _description = value; } }
+        
         public List<Cmdlet> Content { get; set; }
+        
 
         public Script()
         {
-            Author = "AzureScriptGenerator by MiguelRomeral";
+            Author = "MiguelRomeral";
             Content = new List<Cmdlet>();
         }
         
@@ -39,6 +43,7 @@ namespace Core
                 string text = Separator + NL;
                 text += "# Author: " + Author + NL;
                 text += "# DateTime: " + DateTime.Now + NL;
+                text += "# Description:" + NL + "# " + Description + NL;
                 text += Separator + NL;
                 return text;
             }

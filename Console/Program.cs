@@ -12,12 +12,14 @@ namespace Console
     {
         static void Main(string[] args)
         {
-            var script = new Script();
-            var cl = new Install_Module("AzureRM");
-            cl.SetForce();
+            var script = new Script() {
+                Author = "ASG.Console",
+                Description = "Script test"
+            };
 
-            script.AddCommand(cl);
-            
+            script.AddCommand(Library.InstallModule_AzureRM());
+            script.AddCommand(new Login_AzureRMAccount());
+
             System.Console.WriteLine(script);
         }
     }
