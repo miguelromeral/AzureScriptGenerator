@@ -8,6 +8,7 @@ namespace Core.ControlStructures
 {
     public class ConditionalIf : Command
     {
+        public bool Negate { get; set; }
         public Command Statement { get; set; }
         public List<Command> TrueStatements { get; set; }
         public List<Command> FalseStatements { get; set; }
@@ -57,20 +58,27 @@ namespace Core.ControlStructures
 
         public override string ToString()
         {
-            string text = "if(" + Statement + ")" + NewLine();
+            string text = "if(";
+            if (Negate)
+            {
+                text += "-not (";
+            }
+            text += Statement + ")";
+            if (Negate)
+            {
+                text += ")";
+            }
+            text += NewLine();
             text += "{" + NewLine();
             text += PrintStatements(TrueStatements);
-            text += "}" + NewLine();
-            if(FalseStatements.Count == 0)
+            text += "}";
+            if(FalseStatements.Count != 0)
             {
-                text += Script.NL;
-            }
-            else
-            {
+                text += NewLine();
                 text += "else" + NewLine();
                 text += "{" + NewLine();
                 text += PrintStatements(FalseStatements);
-                text += "}" + NewLine();
+                text += "}";
             }
             return text;
         }

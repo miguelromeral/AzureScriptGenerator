@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Core
 {
-    public class Command
+    public abstract class Command
     {
         public int Ident { get; set; }
         
+        public int blockID { get; set; }
 
 
         public static string IdentText(int level)

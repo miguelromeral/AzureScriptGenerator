@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core;
-using Core.cmdlets;
 using Core.ControlStructures;
 
 namespace Console
@@ -13,16 +12,20 @@ namespace Console
     {
         static void Main(string[] args)
         {
-            var script = new Script() {
+            var script = new Script()
+            {
                 Author = "ASG.Console",
                 Description = "Script test"
             };
 
-            var ifelse = Library.CheckIfModuleExists("AzureRM", true);
-            ifelse.AddTrueStatement(new Cmdlet("Login-AzureRMAccount"));
+            var ifelse = Generator.CheckIfModuleExists("AzureRM", true);
             script.AddCommand(ifelse);
+            script.AddCommand(new Statement("Login-AzureRMAccount"));
 
             System.Console.WriteLine(script);
+
+
+
             System.Console.ReadKey();
         }
     }
