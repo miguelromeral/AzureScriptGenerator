@@ -1,0 +1,60 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Core
+{
+    public class Script
+    {
+        public string Author { get; set; }
+        
+        public List<Cmdlet> Content { get; set; }
+
+        public Script()
+        {
+            Author = "AzureScriptGenerator by MiguelRomeral";
+            Content = new List<Cmdlet>();
+        }
+        
+        public void AddCommand(Cmdlet cmdlet)
+        {
+            Content.Add(cmdlet);
+        }
+
+        public bool RemoveCommand(Cmdlet cmdlet)
+        {
+            return Content.Remove(cmdlet);
+        }
+
+
+        public static string NL { get { return Environment.NewLine; } }
+
+        private static string Separator { get { return "########################################################"; } }
+
+        private string Header {
+            get
+            {
+                string text = Separator + NL;
+                text += "# Author: " + Author + NL;
+                text += "# DateTime: " + DateTime.Now + NL;
+                text += Separator + NL;
+                return text;
+            }
+        }
+
+        public override string ToString()
+        {
+            string text = Header + NL;
+
+            foreach(var cl in Content)
+            {
+                text += cl + NL;
+            }
+
+            text += NL + "# End of the Script." + NL + Separator;
+            return text;
+        }
+    }
+}
