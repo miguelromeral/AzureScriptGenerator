@@ -31,9 +31,11 @@ namespace Universal
             // Set theme for window root
             FrameworkElement root = (FrameworkElement)Window.Current.Content;
             root.RequestedTheme = AppSettings.Theme;
+
+            Resources[nav_resourcegroup] = nav_resourcegroup;
         }
 
-        
+        const string nav_resourcegroup = "Nav_ResourceGroup";
 
 
         #region NavigationView event handlers
@@ -66,15 +68,14 @@ namespace Universal
                 TextBlock ItemContent = args.InvokedItem as TextBlock;
                 if (ItemContent != null)
                 {
-                    switch (ItemContent.Tag)
+                    string tag = (string) ItemContent.Tag;
+                    if(tag == (string) Resources["nav_home"])
                     {
-                        case "Nav_Home":
-                            contentFrame.Navigate(typeof(HomePage));
-                            break;
-
-                        case "Nav_Shop":
-                            contentFrame.Navigate(typeof(ResourceGroupPage));
-                            break;
+                        contentFrame.Navigate(typeof(HomePage));
+                    }
+                    else if(tag == (string) Resources["nav_resourcegroup"])
+                    {
+                        contentFrame.Navigate(typeof(ResourceGroupPage));
                     }
                 }
             }

@@ -8,31 +8,33 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+        <x:String x:Key="nav_home">Nav_Home</x:String>
+        <x:String x:Key="nav_resourcegroup">Nav_ResourceGroup</x:String>
+    </Page.Resources>
+    
     <Grid>
         <NavigationView x:Name="nvTopLevelNav"
                         Loaded="nvTopLevelNav_Loaded"
-                        Margin="0,8,0,0"
                         SelectionChanged="nvTopLevelNav_SelectionChanged"
                         ItemInvoked="nvTopLevelNav_ItemInvoked"
                         IsTabStop="False"
                         IsBackButtonVisible="Collapsed"
                         IsSettingsVisible="True"
-                        Header="Let's go shopping!">
+                        Header="Azure Script Generator">
             <NavigationView.MenuItems>
                 <NavigationViewItem Icon="Home"
                                     Tag="Home_Page">
-                    <TextBlock Tag="Nav_Home">Home</TextBlock>
+                    <TextBlock Tag="{StaticResource nav_home}">Home</TextBlock>
                 </NavigationViewItem>
-                <NavigationViewItem Icon="Shop"
-                                    Tag="Shop_Page">
-                    <TextBlock Tag="Nav_Shop">Shop</TextBlock>
-                </NavigationViewItem>
-                <!--<NavigationViewItem Content="Shopping Cart"
-                                    Tag="Cart_Page">
+                <NavigationViewItem Tag="ResourceGroup_Page">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="[Insert Hex Decimal Value Here. See Segoe MDL2 below for details.]" />
+                        <BitmapIcon UriSource="Assets\Resource Groups.png"
+                                    MinHeight="32"
+                                    MinWidth="32" />
                     </NavigationViewItem.Icon>
-                </NavigationViewItem>-->
+                    <TextBlock Tag="{StaticResource nav_resourcegroup}">Resources Groups</TextBlock>
+                </NavigationViewItem>
             </NavigationView.MenuItems>
             <Frame x:Name="contentFrame"></Frame>
         </NavigationView>
