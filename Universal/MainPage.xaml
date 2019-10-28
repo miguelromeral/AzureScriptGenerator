@@ -9,49 +9,32 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-
-        <RelativePanel>
-            <Button Name="HamburguerButton"
-                    Content="&#xE700;"
-                    Style="{StaticResource HamburguerButtonExpand}"
-                    Click="HamburguerButton_Click"/>
-
-        </RelativePanel>
-
-        <SplitView Name="SplitMenu"
-                   Style="{StaticResource HamburguerSplitView}"
-                   Grid.Row="1">
-            <SplitView.Pane>
-                <ListBox SelectionMode="Single"
-                         Name="IconsListBox"
-                         SelectionChanged="IconsListBox_SelectionChanged">
-                    <ListBoxItem Name="ShareListBoxItem">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Style="{StaticResource HamburguerIcon}"
-                                       Text="&#xE15A;" />
-                            <TextBlock Style="{StaticResource HamburguerIconDetail}"
-                                       Text="Resources Groups" />
-                        </StackPanel>
-                    </ListBoxItem>
-                    <ListBoxItem Name="FavoritesListBoxItem">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Style="{StaticResource HamburguerIcon}"
-                                       Text="&#xE11D;" />
-                            <TextBlock Style="{StaticResource HamburguerIconDetail}"
-                                       Text="Share" />
-                        </StackPanel>
-                    </ListBoxItem>
-                </ListBox>
-            </SplitView.Pane>
-            <SplitView.Content>
-                <TextBlock Name="ResultTextBlock" />
-            </SplitView.Content>
-            
-        </SplitView>
-        
+        <NavigationView x:Name="nvTopLevelNav"
+                        Loaded="nvTopLevelNav_Loaded"
+                        Margin="0,8,0,0"
+                        SelectionChanged="nvTopLevelNav_SelectionChanged"
+                        ItemInvoked="nvTopLevelNav_ItemInvoked"
+                        IsTabStop="False"
+                        IsBackButtonVisible="Collapsed"
+                        IsSettingsVisible="True"
+                        Header="Let's go shopping!">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Icon="Home"
+                                    Tag="Home_Page">
+                    <TextBlock Tag="Nav_Home">Home</TextBlock>
+                </NavigationViewItem>
+                <NavigationViewItem Icon="Shop"
+                                    Tag="Shop_Page">
+                    <TextBlock Tag="Nav_Shop">Shop</TextBlock>
+                </NavigationViewItem>
+                <!--<NavigationViewItem Content="Shopping Cart"
+                                    Tag="Cart_Page">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="[Insert Hex Decimal Value Here. See Segoe MDL2 below for details.]" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>-->
+            </NavigationView.MenuItems>
+            <Frame x:Name="contentFrame"></Frame>
+        </NavigationView>
     </Grid>
 </Page>
