@@ -13,7 +13,7 @@ namespace Library.Built
     {
         public static string arg_resourcegroupname = "-ResourceGroupName";
 
-        public ResourceGroup(string name) : base(Generator.GetCmdletCommand(Cmdlet.NewRG))
+        public ResourceGroup(string name) : base(EnumHelper.GetCommand(Cmdlet.NewRG))
         {
             AddArgument(arg_resourcegroupname, name);
         }

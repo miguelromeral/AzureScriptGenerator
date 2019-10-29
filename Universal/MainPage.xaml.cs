@@ -31,12 +31,8 @@ namespace Universal
             // Set theme for window root
             FrameworkElement root = (FrameworkElement)Window.Current.Content;
             root.RequestedTheme = AppSettings.Theme;
-
-            Resources[nav_resourcegroup] = nav_resourcegroup;
         }
-
-        const string nav_resourcegroup = "Nav_ResourceGroup";
-
+        
 
         #region NavigationView event handlers
         private void nvTopLevelNav_Loaded(object sender, RoutedEventArgs e)
@@ -44,13 +40,13 @@ namespace Universal
             // set the initial SelectedItem
             foreach (NavigationViewItemBase item in nvTopLevelNav.MenuItems)
             {
-                if (item is NavigationViewItem && item.Tag.ToString() == "Home_Page")
+                if (item is NavigationViewItem && item.Tag.ToString() == "ResourceGroup_Page")
                 {
                     nvTopLevelNav.SelectedItem = item;
                     break;
                 }
             }
-            contentFrame.Navigate(typeof(HomePage));
+            contentFrame.Navigate(typeof(ResourceGroupPage));
         }
 
         private void nvTopLevelNav_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Core;
-using Core.Statements;
-using Core.Built;
+using Library;
+using Library.Statements;
+using Library.Built;
 
 namespace Console
 {

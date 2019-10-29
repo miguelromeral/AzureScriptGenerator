@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -14,7 +15,7 @@ namespace Library
     {
         public static Statement InstallModule_AzureRM()
         {
-            var cl = new Statement(Generator.GetCmdletCommand(Cmdlet.InstallModule), "AzureRM");
+            var cl = new Statement(EnumHelper.GetCommand(Cmdlet.InstallModule), "AzureRM");
             cl.AddArgument("-Force");
             return cl;
         }
@@ -42,7 +43,7 @@ namespace Library
             if (installifnot)
             {
                 cond.AddTrueStatement(new WriteHost("Installing the module '"+module+"'."));
-                cond.AddTrueStatement(new Statement(Generator.GetCmdletCommand(Cmdlet.InstallModule), variable));
+                cond.AddTrueStatement(new Statement(EnumHelper.GetCommand(Cmdlet.InstallModule), variable));
             }
             else
             {
@@ -54,22 +55,6 @@ namespace Library
 
             return lista;
         }
-
-
-
-
-        public static string GetCmdletCommand(Cmdlet value)
-        {
-            try
-            {
-                FieldInfo fi = value.GetType().GetField(value.ToString());
-                var attribute = (DescriptionAttribute)fi.GetCustomAttribute(typeof(DescriptionAttribute));
-                return attribute.Description;
-            }
-            catch (Exception)
-            {
-                return "";
-            }
-        }
+        
     }
 }

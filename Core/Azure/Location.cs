@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Azure
+namespace Library.Azure
 {
     /// <summary>
     /// https://github.com/Azure/azure-cli/issues/1520

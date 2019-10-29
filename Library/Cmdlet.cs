@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,13 +10,13 @@ namespace Library
 {
     public enum Cmdlet
     {
-        [Description("Install-Module")]
+        [Cmdlet(Command= "Install-Module")]
         InstallModule,
-
-        [Description("Write-Host")]
+        
+        [Cmdlet(Command= "Write-Host")]
         WriteHost,
-
-        [Description("New-AzureRmResourceGroup")]
+        
+        [Cmdlet(Command= "New-AzureRmResourceGroup")]
         NewRG,
     }
 }

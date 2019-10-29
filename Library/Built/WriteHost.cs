@@ -8,7 +8,7 @@ namespace Library.Built
 {
     public class WriteHost : Statement
     {
-        public WriteHost(string text) : base(Generator.GetCmdletCommand(Cmdlet.WriteHost))
+        public WriteHost(string text) : base(EnumHelper.GetCommand(Cmdlet.WriteHost))
         {
             Value = "\"" + text + "\"";
         }

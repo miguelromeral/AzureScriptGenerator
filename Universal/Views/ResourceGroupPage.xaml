@@ -5,10 +5,30 @@
     xmlns:local="using:Universal.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="using:ViewModels"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+        <x:String x:Key="nav_create">Nav_Create</x:String>
+        <x:String x:Key="nav_read">Nav_Read</x:String>
+        <x:String x:Key="nav_update">Nav_Update</x:String>
+        <x:String x:Key="nav_delete">Nav_Delete</x:String>
+    </Page.Resources>
+
     <Grid>
-        <TextBlock>Resources Groups</TextBlock>
+        <StackPanel Style="{StaticResource MainPanel}">
+
+            <TextBlock Style="{StaticResource PageTitle}">
+                Resources Groups
+            </TextBlock>
+
+            <StackPanel Style="{StaticResource SectionPanel}">
+                <TextBlock Style="{StaticResource SectionTitle}">Create</TextBlock>
+                <Button Click="Button_Click">Test</Button>
+                <TextBlock Text="{x:Bind viewModel.Command, Mode=OneWay}"/>
+            </StackPanel>
+
+        </StackPanel>
     </Grid>
 </Page>
