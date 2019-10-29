@@ -37,32 +37,35 @@ namespace Universal.Views
             this.InitializeComponent();
 
             viewModel = new ResourceGroupViewModel();
-
-            dataPackage = new DataPackage();
-            dataPackage.RequestedOperation = DataPackageOperation.Copy;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            
         }
         
         private void TbName_KeyUp(object sender, KeyRoutedEventArgs e)
         {
-            string name = tbName.Text;
-            if (!String.IsNullOrEmpty(name))
-            {
-                viewModel.Command = new ResourceGroup(name);
-            }
-            else
-            {
-                viewModel.Command = null;
-            }
+            Update();
         }
 
         private void BCopyCreate_Click(object sender, RoutedEventArgs e)
         {
             PageHelper.CopyContent(tbCreate.Text);
+        }
+
+        private void TsForce_Toggled(object sender, RoutedEventArgs e)
+        {
+            pWarning.Visibility = (tsForce.IsOn ? Visibility.Visible : Visibility.Collapsed);
+            Update();
+        }
+
+        private void Update()
+        {
+            string name = tbName.Text;
+            if (!String.IsNullOrEmpty(name))
+            {
+                viewModel.UpdateCommand(name, tsForce.IsOn);
+            }
+            else
+            {
+                viewModel.Command = null;
+            }
         }
     }
 }

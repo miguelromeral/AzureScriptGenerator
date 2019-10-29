@@ -20,6 +20,16 @@ namespace Library
             return cl;
         }
 
+        public static ResourceGroup CreateResourceGroup(string name, bool force)
+        {
+            var rg = new ResourceGroup(name);
+            if (force)
+            {
+                rg.AddArgument(Argument.FORCE);
+            }
+            return rg;
+        }
+
         public static List<Command> CheckIfModuleExists(string module, string variablename, bool installifnot = true)
         {
             var assign = new Assignment(variablename, module)

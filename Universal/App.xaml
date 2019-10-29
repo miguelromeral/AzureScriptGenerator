@@ -11,6 +11,8 @@
             <Style TargetType="TextBlock">
                 <Setter Property="Margin"
                         Value="2" />
+                <Setter Property="TextWrapping"
+                        Value="Wrap" />
             </Style>
             
             <Style TargetType="TextBlock"
@@ -36,7 +38,7 @@
                 <Setter Property="Margin"
                         Value="0,20,0,20" />
             </Style>
-            
+
             <Style TargetType="TextBlock"
                    x:Key="SectionTitle">
                 <Setter Property="FontSize"
@@ -45,11 +47,35 @@
                         Value="10" />
             </Style>
 
+            <Style TargetType="TextBlock"
+                   x:Key="WarningText">
+                <Setter Property="Foreground"
+                        Value="Black" />
+                <Setter Property="FontWeight"
+                        Value="Bold" />
+                <Setter Property="TextWrapping"
+                        Value="Wrap" />
+            </Style>
+            
+            <Style TargetType="TextBlock"
+                   x:Key="WarningIcon">
+                <Setter Property="FontFamily"
+                        Value="Segoe MDL2 Assets" />
+                <Setter Property="Foreground"
+                        Value="Black" />
+                <Setter Property="FontSize"
+                        Value="24" />
+            </Style>
+
             <!-- TEXT BOXES -->
             <Style TargetType="TextBox"
                    x:Key="OutputTextBox">
                 <Setter Property="IsReadOnly"
                         Value="True" />
+                <Setter Property="FontFamily"
+                        Value="Consolas" />
+                <Setter Property="TextWrapping"
+                        Value="Wrap" />
             </Style>
 
             <!-- BUTTONS -->
@@ -62,6 +88,16 @@
             </Style>
 
             <!-- STACK PANELS -->
+            <Style TargetType="StackPanel"
+                   x:Key="WarningPanel">
+                <Setter Property="Margin"
+                        Value="5" />
+                <Setter Property="Padding"
+                        Value="5" />
+                <Setter Property="Background"
+                        Value="#f7b705" />
+            </Style>
+            
             <Style TargetType="StackPanel"
                    x:Key="MainPanel">
                 <Setter Property="Margin"
@@ -92,6 +128,8 @@
 
             <Style TargetType="StackPanel"
                    x:Key="CopyPanel">
+                <Setter Property="VerticalAlignment"
+                        Value="Top" />
                 <Setter Property="Background"
                         Value="{ThemeResource SystemControlBackgroundBaseMediumLowBrush}" />
             </Style>

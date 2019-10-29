@@ -34,31 +34,73 @@
             </StackPanel>
 
             <StackPanel Style="{StaticResource SectionPanel}">
-                <TextBlock Style="{StaticResource SectionTitle}">Create</TextBlock>
-                
-                <TextBlock/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
 
-                <StackPanel Style="{StaticResource CopyPanel}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0"
+                               Grid.ColumnSpan="2"
+                        Style="{StaticResource SectionTitle}">Create</TextBlock>
 
-                        <StackPanel Grid.Row="0"
-                                    HorizontalAlignment="Right">
-                            <Button Name="bCopyCreate"
-                                    Click="BCopyCreate_Click">Copy</Button>
+                    <StackPanel Grid.Row="1"
+                                Grid.Column="0">
+
+                        <ToggleSwitch Name="tsForce"
+                                      Header="Force creation"
+                                      OffContent="No"
+                                      OnContent="Yes"
+                                      IsOn="False"
+                                      Toggled="TsForce_Toggled"/>
+
+                        <TextBlock>Specifies a name for the resource group. The resource name must be unique in the subscription.</TextBlock>
+                        <StackPanel Name="pWarning"
+                                    Visibility="Collapsed"
+                                    Style="{StaticResource WarningPanel}">
+
+                            <TextBlock Style="{StaticResource WarningIcon}">&#xE7BA;</TextBlock>
+                            
+                            <TextBlock Style="{StaticResource WarningText}">If a resource group that has that name already exists, the command prompts you for confirmation before replacing the existing resource group.</TextBlock>
+                            
                         </StackPanel>
-
-                        <TextBox Grid.Row="1"
-                                 Name="tbCreate"
-                                 Style="{StaticResource OutputTextBox}"
-                                 Text="{x:Bind viewModel.Command, Mode=OneWay}">
-                        </TextBox>
                         
-                    </Grid>
-                </StackPanel>
+                    </StackPanel>
+
+                    
+                    
+                    <StackPanel Grid.Row="1"
+                                Grid.Column="1"
+                        Style="{StaticResource CopyPanel}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Grid.Row="0"
+                                        HorizontalAlignment="Right">
+                                <Button Name="bCopyCreate"
+                                        Click="BCopyCreate_Click">Copy</Button>
+                            </StackPanel>
+
+                            <TextBox Grid.Row="1"
+                                     Name="tbCreate"
+                                     Style="{StaticResource OutputTextBox}"
+                                     Text="{x:Bind viewModel.Command, Mode=OneWay}">
+                            </TextBox>
+
+                        </Grid>
+                    </StackPanel>
+
+                </Grid>
+                
+                
+                
                 
             </StackPanel>
 

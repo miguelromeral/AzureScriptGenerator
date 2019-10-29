@@ -26,6 +26,9 @@ namespace Universal.ViewModels
         }
 
 
-
+        public void UpdateCommand(string name, bool force)
+        {
+            Command = Generator.CreateResourceGroup(name, force);
+        }
     }
 }

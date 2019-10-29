@@ -8,6 +8,8 @@ namespace Library
 {
     public class Argument
     {
+        public static string FORCE = "-Force";
+
         public string Variable { get; set; }
 
         private string _value;
