@@ -23,10 +23,43 @@
                 Resources Groups
             </TextBlock>
 
+            <StackPanel Style="{StaticResource HeaderPanel}">
+                <TextBlock Style="{StaticResource SectionTitle}">General Data</TextBlock>
+                
+                <TextBox Name="tbName"
+                         Header="Select a name for the Resource Group:"
+                         PlaceholderText="Name"
+                         KeyUp="TbName_KeyUp"/>
+
+            </StackPanel>
+
             <StackPanel Style="{StaticResource SectionPanel}">
                 <TextBlock Style="{StaticResource SectionTitle}">Create</TextBlock>
-                <Button Click="Button_Click">Test</Button>
-                <TextBlock Text="{x:Bind viewModel.Command, Mode=OneWay}"/>
+                
+                <TextBlock/>
+
+                <StackPanel Style="{StaticResource CopyPanel}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0"
+                                    HorizontalAlignment="Right">
+                            <Button Name="bCopyCreate"
+                                    Click="BCopyCreate_Click">Copy</Button>
+                        </StackPanel>
+
+                        <TextBox Grid.Row="1"
+                                 Name="tbCreate"
+                                 Style="{StaticResource OutputTextBox}"
+                                 Text="{x:Bind viewModel.Command, Mode=OneWay}">
+                        </TextBox>
+                        
+                    </Grid>
+                </StackPanel>
+                
             </StackPanel>
 
         </StackPanel>

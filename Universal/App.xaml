@@ -8,6 +8,11 @@
         <ResourceDictionary>
 
             <!-- TEXT BLOCKS -->
+            <Style TargetType="TextBlock">
+                <Setter Property="Margin"
+                        Value="2" />
+            </Style>
+            
             <Style TargetType="TextBlock"
                    x:Key="HamburguerIcon">
                 <Setter Property="FontFamily"
@@ -40,6 +45,13 @@
                         Value="10" />
             </Style>
 
+            <!-- TEXT BOXES -->
+            <Style TargetType="TextBox"
+                   x:Key="OutputTextBox">
+                <Setter Property="IsReadOnly"
+                        Value="True" />
+            </Style>
+
             <!-- BUTTONS -->
             <Style TargetType="TextBlock"
                    x:Key="HamburguerButtonExpand">
@@ -54,9 +66,10 @@
                    x:Key="MainPanel">
                 <Setter Property="Margin"
                         Value="15" />
+                <Setter Property="Padding"
+                        Value="5" />
             </Style>
 
-            <!-- STACK PANELS -->
             <Style TargetType="StackPanel"
                    x:Key="SectionPanel">
                 <Setter Property="Margin"
@@ -65,6 +78,22 @@
                         Value="5" />
                 <Setter Property="Background"
                         Value="{ThemeResource SystemControlBackgroundListLowBrush}" />
+            </Style>
+
+            <Style TargetType="StackPanel"
+                   x:Key="HeaderPanel">
+                <Setter Property="Margin"
+                        Value="0,5,0,5" />
+                <Setter Property="Padding"
+                        Value="5" />
+                <Setter Property="Background"
+                        Value="{ThemeResource SystemControlBackgroundListLowBrush}" />
+            </Style>
+
+            <Style TargetType="StackPanel"
+                   x:Key="CopyPanel">
+                <Setter Property="Background"
+                        Value="{ThemeResource SystemControlBackgroundBaseMediumLowBrush}" />
             </Style>
 
             <!-- SPLIT VIEWS -->

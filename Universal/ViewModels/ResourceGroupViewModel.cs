@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Library;
+using Library.Azure;
 
 namespace Universal.ViewModels
 {
@@ -16,9 +18,14 @@ namespace Universal.ViewModels
             set { if (SetProperty(ref _command, value)) RaisePropertyChanged(nameof(Command)); }
         }
 
+        ObservableCollection<Location> Locations;
+
         public ResourceGroupViewModel()
         {
+            Locations = new ObservableCollection<Location>();
         }
+
+
 
     }
 }

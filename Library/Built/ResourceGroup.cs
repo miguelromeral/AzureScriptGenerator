@@ -11,7 +11,7 @@ namespace Library.Built
     /// </summary>
     public class ResourceGroup : Statement
     {
-        public static string arg_resourcegroupname = "-ResourceGroupName";
+        public static string arg_resourcegroupname = "-Name";
 
         public ResourceGroup(string name) : base(EnumHelper.GetCommand(Cmdlet.NewRG))
         {
