@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Library.Built
@@ -30,6 +31,16 @@ namespace Library.Built
             }
 
             AddArgument(arg_resourcegroupname, name);
+        }
+
+        public static bool MatchNamePattern(string name)
+        {
+            Regex regex = new Regex(NAME_PATTERN);
+            if (regex.Matches(name).Count == 0)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

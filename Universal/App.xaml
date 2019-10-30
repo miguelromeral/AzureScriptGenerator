@@ -78,13 +78,19 @@
                         Value="Wrap" />
             </Style>
 
-            <!-- BUTTONS -->
             <Style TargetType="TextBlock"
                    x:Key="HamburguerButtonExpand">
                 <Setter Property="FontFamily"
                         Value="Segoe MDL2 Assets" />
                 <Setter Property="FontSize"
                         Value="36" />
+            </Style>
+
+            <!-- BUTTONS -->
+            <Style TargetType="Button"
+                   x:Key="ButtonCopy">
+                <Setter Property="Content"
+                        Value="Copy" />
             </Style>
 
             <!-- STACK PANELS -->

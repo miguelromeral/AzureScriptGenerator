@@ -57,5 +57,10 @@ namespace Universal.Views
             viewModel.Name = tbName.Text;
             viewModel.UpdateCommand();
         }
+
+        private void BCopyRemove_Click(object sender, RoutedEventArgs e)
+        {
+            PageHelper.CopyContent(tbRemove.Text);
+        }
     }
 }

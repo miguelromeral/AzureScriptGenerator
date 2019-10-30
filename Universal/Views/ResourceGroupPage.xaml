@@ -25,12 +25,54 @@
             </TextBlock>
 
             <StackPanel Style="{StaticResource HeaderPanel}">
-                <TextBlock Style="{StaticResource SectionTitle}">General Data</TextBlock>
+
+                    <StackPanel Style="{StaticResource SubsectionPanel}">
+
+                        <TextBlock Style="{StaticResource SectionTitle}">General Data</TextBlock>
+
+                        <TextBox Name="tbName"
+                                 KeyUp="TbName_KeyUp"
+                                 Header="Select a name for the Resource Group:"
+                                 PlaceholderText="Name" />
+                        
+                    </StackPanel>
+                    <StackPanel Style="{StaticResource SubsectionPanel}">
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0">
+                                <ToggleSwitch Name="tsForce"
+                                              Header="Force creation"
+                                              OffContent="No"
+                                              OnContent="Yes"
+                                              IsOn="{x:Bind viewModel.Force, Mode=TwoWay}"
+                                              Toggled="TsForce_Toggled" />
+
+                                <TextBlock>Forces the command to run without asking for user confirmation.</TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <StackPanel Name="pWarning"
+                                            Visibility="Collapsed"
+                                            Style="{StaticResource WarningPanel}">
+
+                                    <TextBlock Style="{StaticResource WarningIcon}">&#xE7BA;</TextBlock>
+
+                                    <TextBlock Style="{StaticResource WarningText}">If a resource group that has that name already exists, the command prompts you for confirmation before replacing the existing resource group.</TextBlock>
+
+                                </StackPanel>
+                            </StackPanel>
+
+                        </Grid>
+                        
+
+                    </StackPanel>
                 
-                <TextBox Name="tbName"
-                         KeyUp="TbName_KeyUp"
-                         Header="Select a name for the Resource Group:"
-                         PlaceholderText="Name"/>
+                
+                
 
             </StackPanel>
 
@@ -51,34 +93,9 @@
                         <TextBlock Style="{StaticResource SectionTitle}">Create</TextBlock>
 
                     </StackPanel>
-                    
-                    
-                    
-                    
-                    <StackPanel Grid.Row="1"
-                                Grid.Column="0">
 
-                            <StackPanel Style="{StaticResource SubsectionPanel}">
-
-                                <ToggleSwitch Name="tsForce"
-                                              Header="Force creation"
-                                              OffContent="No"
-                                              OnContent="Yes"
-                                              IsOn="{x:Bind viewModel.Force, Mode=TwoWay}"
-                                              Toggled="TsForce_Toggled" />
-
-                                <TextBlock>Specifies a name for the resource group. The resource name must be unique in the subscription.</TextBlock>
-                                <StackPanel Name="pWarning"
-                                            Visibility="Collapsed"
-                                            Style="{StaticResource WarningPanel}">
-
-                                    <TextBlock Style="{StaticResource WarningIcon}">&#xE7BA;</TextBlock>
-
-                                    <TextBlock Style="{StaticResource WarningText}">If a resource group that has that name already exists, the command prompts you for confirmation before replacing the existing resource group.</TextBlock>
-
-                                </StackPanel>
-
-                            </StackPanel>
+                        <StackPanel Grid.Row="1"
+                                    Grid.Column="0">
                             <StackPanel Style="{StaticResource SubsectionPanel}">
 
                                 <ToggleSwitch Name="tsLocation"
@@ -97,18 +114,9 @@
 
                             </StackPanel>
                         
-                        
-
                             
                         </StackPanel>
 
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                     
                     
                     <StackPanel Grid.Row="1"
@@ -122,8 +130,9 @@
 
                             <StackPanel Grid.Row="0"
                                         HorizontalAlignment="Right">
-                                <Button Name="bCopyCreate"
-                                        Click="BCopyCreate_Click">Copy</Button>
+                                    <Button Name="bCopyCreate"
+                                            Style="{StaticResource ButtonCopy}"
+                                            Click="BCopyCreate_Click" />
                             </StackPanel>
 
                             <TextBox Grid.Row="1"
@@ -142,7 +151,62 @@
                 
             </StackPanel>
 
-        </StackPanel>
+                <StackPanel Style="{StaticResource SectionPanel}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0"
+                                    Grid.ColumnSpan="2">
+
+                            <TextBlock Style="{StaticResource SectionTitle}">Remove</TextBlock>
+
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1"
+                                    Grid.Column="0">
+                            <StackPanel Style="{StaticResource SubsectionPanel}">
+
+                            </StackPanel>
+
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1"
+                                    Grid.Column="1"
+                                    Style="{StaticResource CopyPanel}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Grid.Row="0"
+                                            HorizontalAlignment="Right">
+                                    <Button Name="bCopyRemove"
+                                            Style="{StaticResource ButtonCopy}"
+                                            Click="BCopyRemove_Click" />
+                                </StackPanel>
+
+                                <TextBox Grid.Row="1"
+                                         Name="tbRemove"
+                                         Style="{StaticResource OutputTextBox}"
+                                         Text="{x:Bind viewModel.RemoveCommand, Mode=OneWay}">
+                                </TextBox>
+
+                            </Grid>
+                        </StackPanel>
+
+                    </Grid>
+
+                </StackPanel>
+
+            </StackPanel>
         </ScrollViewer>
     </Grid>
 </Page>

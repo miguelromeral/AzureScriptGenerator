@@ -18,6 +18,13 @@ namespace Universal.ViewModels
             set { if (SetProperty(ref _createCommand, value)) RaisePropertyChanged(nameof(CreateCommand)); }
         }
 
+        Command _removeCommand;
+        public Command RemoveCommand
+        {
+            get { return _removeCommand; }
+            set { if (SetProperty(ref _removeCommand, value)) RaisePropertyChanged(nameof(RemoveCommand)); }
+        }
+
         public ObservableCollection<string> Locations;
 
         bool _force;
@@ -81,10 +88,12 @@ namespace Universal.ViewModels
             if (String.IsNullOrEmpty(Name))
             {
                 CreateCommand = null;
+                RemoveCommand = null;
             }
             else
             {
                 CreateCommand = Generator.CreateResourceGroup(Name, Force, Location);
+                RemoveCommand = Generator.RemoveResourceGroup(Name, Force);
             }
         }
     }

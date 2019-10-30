@@ -24,11 +24,8 @@ namespace Library
 
         public static ResourceGroup CreateResourceGroup(string name, bool force = false, string location = "")
         {
-            Regex regex = new Regex(ResourceGroup.NAME_PATTERN);
-            if (regex.Matches(name).Count == 0)
-            {
+            if (!ResourceGroup.MatchNamePattern(name))
                 return null;
-            }
 
             var rg = new ResourceGroup(Operation.Create, Helper.AddQuotes(name));
             if (force)
@@ -38,6 +35,18 @@ namespace Library
             if (!String.IsNullOrEmpty(location))
             {
                 rg.AddArgument(Argument.LOCATION, Helper.AddQuotes(location));
+            }
+            return rg;
+        }
+        public static ResourceGroup RemoveResourceGroup(string name, bool force = false)
+        {
+            if (!ResourceGroup.MatchNamePattern(name))
+                return null;
+
+            var rg = new ResourceGroup(Operation.Remove, Helper.AddQuotes(name));
+            if (force)
+            {
+                rg.AddArgument(Argument.FORCE);
             }
             return rg;
         }
