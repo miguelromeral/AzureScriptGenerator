@@ -12,12 +12,23 @@ namespace Library.Built
     public class ResourceGroup : Statement
     {
         public static string arg_resourcegroupname = "-Name";
-
-
+        
         public static string NAME_PATTERN = @"^[-\w\._\(\)]+$";
 
-        public ResourceGroup(string name) : base(EnumHelper.GetCommand(Cmdlet.NewRG))
+
+        public ResourceGroup(Operation operation, string name) : base(EnumHelper.GetCommand(Cmdlet.CreateRG))
         {
+            switch (operation)
+            {
+                case Operation.Remove:
+                    Command = EnumHelper.GetCommand(Cmdlet.RemoveRG);
+                    break;
+                // Already done
+                case Operation.Create:
+                default:
+                        break;
+            }
+
             AddArgument(arg_resourcegroupname, name);
         }
     }

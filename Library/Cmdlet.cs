@@ -16,7 +16,11 @@ namespace Library
         [Cmdlet(Command= "Write-Host")]
         WriteHost,
         
+
+        // ------------------- RESOURCES GROUPS ---------------------------
         [Cmdlet(Command= "New-AzureRmResourceGroup")]
-        NewRG,
+        CreateRG,
+        [Cmdlet(Command = "Remove-AzureRmResourceGroup")]
+        RemoveRG,
     }
 }

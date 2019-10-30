@@ -8,7 +8,20 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    
+    
+
     <Page.Resources>
+        <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground"
+                         Color="{ThemeResource SystemAccentColor}" />
+        <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground"
+                         Color="{ThemeResource SystemAccentColor}" />
+
+        <SolidColorBrush Color="{ThemeResource SystemAccentColorDark1}"
+                         x:Key="NavigationViewItemBackgroundSelected" />
+        <SolidColorBrush Color="{ThemeResource SystemAccentColorLight1}"
+                         x:Key="NavigationViewItemBackgroundSelectedPointerOver" />
+
         <x:String x:Key="nav_home">Nav_Home</x:String>
         <x:String x:Key="nav_resourcegroup">Nav_ResourceGroup</x:String>
     </Page.Resources>

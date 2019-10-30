@@ -22,7 +22,7 @@ namespace Console
             var ifelse = Generator.CheckIfModuleExists("AzureRM", "azurerm", true);
             script.AddCommand(ifelse);
             script.AddCommand(new Statement("Login-AzureRMAccount"));
-            script.AddCommand(new ResourceGroup("testing"));
+            script.AddCommand(new ResourceGroup(Operation.Create, "testing"));
 
 
             System.Console.WriteLine(script);

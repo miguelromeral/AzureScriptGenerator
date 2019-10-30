@@ -30,7 +30,7 @@ namespace Library
                 return null;
             }
 
-            var rg = new ResourceGroup(Helper.AddQuotes(name));
+            var rg = new ResourceGroup(Operation.Create, Helper.AddQuotes(name));
             if (force)
             {
                 rg.AddArgument(Argument.FORCE);

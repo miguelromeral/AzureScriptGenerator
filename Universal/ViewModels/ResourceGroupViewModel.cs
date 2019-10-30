@@ -11,11 +11,11 @@ namespace Universal.ViewModels
 {
     public class ResourceGroupViewModel : NotificationBase
     {
-        Command _command;
-        public Command Command
+        Command _createCommand;
+        public Command CreateCommand
         {
-            get { return _command; }
-            set { if (SetProperty(ref _command, value)) RaisePropertyChanged(nameof(Command)); }
+            get { return _createCommand; }
+            set { if (SetProperty(ref _createCommand, value)) RaisePropertyChanged(nameof(CreateCommand)); }
         }
 
         public ObservableCollection<string> Locations;
@@ -80,11 +80,11 @@ namespace Universal.ViewModels
         {
             if (String.IsNullOrEmpty(Name))
             {
-                Command = null;
+                CreateCommand = null;
             }
             else
             {
-                Command = Generator.CreateResourceGroup(Name, Force, Location);
+                CreateCommand = Generator.CreateResourceGroup(Name, Force, Location);
             }
         }
     }

@@ -129,7 +129,7 @@
                             <TextBox Grid.Row="1"
                                      Name="tbCreate"
                                      Style="{StaticResource OutputTextBox}"
-                                     Text="{x:Bind viewModel.Command, Mode=OneWay}">
+                                     Text="{x:Bind viewModel.CreateCommand, Mode=OneWay}">
                             </TextBox>
 
                         </Grid>
