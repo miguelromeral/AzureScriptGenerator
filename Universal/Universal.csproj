@@ -144,6 +144,7 @@
     <None Include="Universal_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Logos\AzureScriptGenerator.png" />
     <Content Include="Assets\Logos\BadgeLogo.scale-100.png" />
     <Content Include="Assets\Logos\BadgeLogo.scale-125.png" />
     <Content Include="Assets\Logos\BadgeLogo.scale-150.png" />
