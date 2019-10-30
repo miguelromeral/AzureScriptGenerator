@@ -27,7 +27,8 @@ namespace Universal
         public MainPage()
         {
             this.InitializeComponent();
-            
+            this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
+
             // Set theme for window root
             FrameworkElement root = (FrameworkElement)Window.Current.Content;
             root.RequestedTheme = AppSettings.Theme;

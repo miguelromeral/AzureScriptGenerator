@@ -33,10 +33,11 @@ namespace Universal.Views
         public ResourceGroupPage()
         {
             this.InitializeComponent();
-            
+            this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
+
             viewModel = new ResourceGroupViewModel();
         }
-        
+
         private void BCopyCreate_Click(object sender, RoutedEventArgs e)
         {
             PageHelper.CopyContent(tbCreate.Text);
