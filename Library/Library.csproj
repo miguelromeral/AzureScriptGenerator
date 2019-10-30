@@ -38,7 +38,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Argument.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="Azure\Location.cs" />
+    <Compile Include="Azure\LocationAttribute.cs" />
     <Compile Include="Built\ResourceGroup.cs" />
     <Compile Include="Built\WriteHost.cs" />
     <Compile Include="Cmdlet.cs" />

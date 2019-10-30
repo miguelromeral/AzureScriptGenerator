@@ -5,7 +5,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Library;
 using Library.Built;
 using Library.Statements;
 
@@ -20,12 +22,22 @@ namespace Library
             return cl;
         }
 
-        public static ResourceGroup CreateResourceGroup(string name, bool force)
+        public static ResourceGroup CreateResourceGroup(string name, bool force = false, string location = "")
         {
-            var rg = new ResourceGroup(name);
+            Regex regex = new Regex(ResourceGroup.NAME_PATTERN);
+            if (regex.Matches(name).Count == 0)
+            {
+                return null;
+            }
+
+            var rg = new ResourceGroup(Helper.AddQuotes(name));
             if (force)
             {
                 rg.AddArgument(Argument.FORCE);
+            }
+            if (!String.IsNullOrEmpty(location))
+            {
+                rg.AddArgument(Argument.LOCATION, Helper.AddQuotes(location));
             }
             return rg;
         }

@@ -9,6 +9,7 @@ namespace Library
     public class Argument
     {
         public static string FORCE = "-Force";
+        public static string LOCATION = "-Location";
 
         public string Variable { get; set; }
 

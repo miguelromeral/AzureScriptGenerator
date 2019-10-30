@@ -14,69 +14,69 @@ namespace Library.Azure
     /// </summary>
     public enum Location
     {
-        [Display(Description="East Asia")]
+        [LocationAttribute(Description = "East Asia")]
         eastasia,
-        [Display(Description="Southeast Asia")]
+        [LocationAttribute(Description = "Southeast Asia")]
         southeastasia,
-        [Display(Description="Central US")]
+        [LocationAttribute(Description = "Central US")]
         centraulus,
-        [Display(Description="East US")]
+        [LocationAttribute(Description = "East US")]
         eastus,
-        [Display(Description="East US 2")]
+        [LocationAttribute(Description = "East US 2")]
         eastus2,
-        [Display(Description="West US")]
+        [LocationAttribute(Description = "West US")]
         westus,
-        [Display(Description="North Central US")]
+        [LocationAttribute(Description = "North Central US")]
         northcentralus,
-        [Display(Description="South Central US")]
+        [LocationAttribute(Description = "South Central US")]
         southcentralus,
-        [Display(Description="North Europe")]
+        [LocationAttribute(Description = "North Europe")]
         northeurope,
-        [Display(Description="West Europe")]
+        [LocationAttribute(Description = "West Europe")]
         westeurope,
-        [Display(Description="Japan West")]
+        [LocationAttribute(Description = "Japan West")]
         japanwest,
-        [Display(Description="Japan East")]
+        [LocationAttribute(Description = "Japan East")]
         japaneast,
-        [Display(Description="Brazil South")]
+        [LocationAttribute(Description = "Brazil South")]
         brazilsouth,
-        [Display(Description="Australia East")]
+        [LocationAttribute(Description = "Australia East")]
         australiaeast,
-        [Display(Description="Australia  Southeast")]
+        [LocationAttribute(Description = "Australia Southeast")]
         australiasoutheast,
-        [Display(Description="South India")]
+        [LocationAttribute(Description = "South India")]
         southindia,
-        [Display(Description="Central India")]
+        [LocationAttribute(Description = "Central India")]
         centralindia,
-        [Display(Description="West India")]
+        [LocationAttribute(Description = "West India")]
         westindia,
-        [Display(Description="Canada Central")]
+        [LocationAttribute(Description = "Canada Central")]
         canadacentral,
-        [Display(Description="Canada East")]
+        [LocationAttribute(Description = "Canada East")]
         canadaeast,
-        [Display(Description="UK South")]
+        [LocationAttribute(Description = "UK South")]
         uksouth,
-        [Display(Description="UK West")]
+        [LocationAttribute(Description = "UK West")]
         ukwest,
-        [Display(Description="West Central US")]
+        [LocationAttribute(Description = "West Central US")]
         westcentralus,
-        [Display(Description="West US 2")]
+        [LocationAttribute(Description = "West US 2")]
         westus2,
-        [Display(Description="Korea Central")]
+        [LocationAttribute(Description = "Korea Central")]
         koreacentral,
-        [Display(Description="Korea South")]
+        [LocationAttribute(Description = "Korea South")]
         koreasouth,
-        [Display(Description="France Central")]
+        [LocationAttribute(Description = "France Central")]
         francecentral,
-        [Display(Description="France South")]
+        [LocationAttribute(Description = "France South")]
         francesouth,
-        [Display(Description="Australia Central")]
+        [LocationAttribute(Description = "Australia Central")]
         australiacentral,
-        [Display(Description="Australia Central 2")]
+        [LocationAttribute(Description = "Australia Central 2")]
         australiacentral2,
-        [Display(Description="South Africa North")]
+        [LocationAttribute(Description = "South Africa North")]
         southafricanorth,
-        [Display(Description="South Africa West")]
+        [LocationAttribute(Description = "South Africa West")]
         southafricawest,
     }
 }

@@ -29,21 +29,14 @@ namespace Universal.Views
     public sealed partial class ResourceGroupPage : Page
     {
         ResourceGroupViewModel viewModel;
-
-        DataPackage dataPackage;
-
+        
         public ResourceGroupPage()
         {
             this.InitializeComponent();
-
+            
             viewModel = new ResourceGroupViewModel();
         }
         
-        private void TbName_KeyUp(object sender, KeyRoutedEventArgs e)
-        {
-            Update();
-        }
-
         private void BCopyCreate_Click(object sender, RoutedEventArgs e)
         {
             PageHelper.CopyContent(tbCreate.Text);
@@ -52,20 +45,17 @@ namespace Universal.Views
         private void TsForce_Toggled(object sender, RoutedEventArgs e)
         {
             pWarning.Visibility = (tsForce.IsOn ? Visibility.Visible : Visibility.Collapsed);
-            Update();
+        }
+        
+        private void TsLocation_Toggled(object sender, RoutedEventArgs e)
+        {
+            cbLocation.Visibility = (tsLocation.IsOn ? Visibility.Visible : Visibility.Collapsed);
         }
 
-        private void Update()
+        private void TbName_KeyUp(object sender, KeyRoutedEventArgs e)
         {
-            string name = tbName.Text;
-            if (!String.IsNullOrEmpty(name))
-            {
-                viewModel.UpdateCommand(name, tsForce.IsOn);
-            }
-            else
-            {
-                viewModel.Command = null;
-            }
+            viewModel.Name = tbName.Text;
+            viewModel.UpdateCommand();
         }
     }
 }

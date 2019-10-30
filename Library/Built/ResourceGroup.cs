@@ -13,6 +13,9 @@ namespace Library.Built
     {
         public static string arg_resourcegroupname = "-Name";
 
+
+        public static string NAME_PATTERN = @"^[-\w\._\(\)]+$";
+
         public ResourceGroup(string name) : base(EnumHelper.GetCommand(Cmdlet.NewRG))
         {
             AddArgument(arg_resourcegroupname, name);

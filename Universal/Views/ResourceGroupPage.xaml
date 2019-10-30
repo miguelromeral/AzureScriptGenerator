@@ -17,6 +17,7 @@
     </Page.Resources>
 
     <Grid>
+        <ScrollViewer>
         <StackPanel Style="{StaticResource MainPanel}">
 
             <TextBlock Style="{StaticResource PageTitle}">
@@ -27,9 +28,9 @@
                 <TextBlock Style="{StaticResource SectionTitle}">General Data</TextBlock>
                 
                 <TextBox Name="tbName"
+                         KeyUp="TbName_KeyUp"
                          Header="Select a name for the Resource Group:"
-                         PlaceholderText="Name"
-                         KeyUp="TbName_KeyUp"/>
+                         PlaceholderText="Name"/>
 
             </StackPanel>
 
@@ -44,33 +45,70 @@
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="0"
-                               Grid.ColumnSpan="2"
-                        Style="{StaticResource SectionTitle}">Create</TextBlock>
+                    <StackPanel Grid.Row="0"
+                                Grid.ColumnSpan="2">
 
+                        <TextBlock Style="{StaticResource SectionTitle}">Create</TextBlock>
+
+                    </StackPanel>
+                    
+                    
+                    
+                    
                     <StackPanel Grid.Row="1"
                                 Grid.Column="0">
 
-                        <ToggleSwitch Name="tsForce"
-                                      Header="Force creation"
-                                      OffContent="No"
-                                      OnContent="Yes"
-                                      IsOn="False"
-                                      Toggled="TsForce_Toggled"/>
+                            <StackPanel Style="{StaticResource SubsectionPanel}">
 
-                        <TextBlock>Specifies a name for the resource group. The resource name must be unique in the subscription.</TextBlock>
-                        <StackPanel Name="pWarning"
-                                    Visibility="Collapsed"
-                                    Style="{StaticResource WarningPanel}">
+                                <ToggleSwitch Name="tsForce"
+                                              Header="Force creation"
+                                              OffContent="No"
+                                              OnContent="Yes"
+                                              IsOn="{x:Bind viewModel.Force, Mode=TwoWay}"
+                                              Toggled="TsForce_Toggled" />
 
-                            <TextBlock Style="{StaticResource WarningIcon}">&#xE7BA;</TextBlock>
-                            
-                            <TextBlock Style="{StaticResource WarningText}">If a resource group that has that name already exists, the command prompts you for confirmation before replacing the existing resource group.</TextBlock>
+                                <TextBlock>Specifies a name for the resource group. The resource name must be unique in the subscription.</TextBlock>
+                                <StackPanel Name="pWarning"
+                                            Visibility="Collapsed"
+                                            Style="{StaticResource WarningPanel}">
+
+                                    <TextBlock Style="{StaticResource WarningIcon}">&#xE7BA;</TextBlock>
+
+                                    <TextBlock Style="{StaticResource WarningText}">If a resource group that has that name already exists, the command prompts you for confirmation before replacing the existing resource group.</TextBlock>
+
+                                </StackPanel>
+
+                            </StackPanel>
+                            <StackPanel Style="{StaticResource SubsectionPanel}">
+
+                                <ToggleSwitch Name="tsLocation"
+                                              Header="Add location"
+                                              OffContent="No"
+                                              OnContent="Yes"
+                                              IsOn="False"
+                                              Toggled="TsLocation_Toggled" />
+                                
+                                <ComboBox Name="cbLocation"
+                                          SelectedItem="{x:Bind viewModel.Location, Mode=TwoWay}"
+                                          Visibility="Collapsed"
+                                          Header="Choose a location"
+                                          HorizontalAlignment="Stretch"
+                                          ItemsSource="{x:Bind viewModel.Locations}"/>
+
+                            </StackPanel>
+                        
+                        
+
                             
                         </StackPanel>
-                        
-                    </StackPanel>
 
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     
                     
                     <StackPanel Grid.Row="1"
@@ -105,5 +143,6 @@
             </StackPanel>
 
         </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

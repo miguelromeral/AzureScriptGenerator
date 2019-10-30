@@ -117,6 +117,14 @@
             </Style>
 
             <Style TargetType="StackPanel"
+                   x:Key="SubsectionPanel">
+                <Setter Property="Margin"
+                        Value="0,5,0,5" />
+                <Setter Property="Padding"
+                        Value="5" />
+            </Style>
+
+            <Style TargetType="StackPanel"
                    x:Key="HeaderPanel">
                 <Setter Property="Margin"
                         Value="0,5,0,5" />
