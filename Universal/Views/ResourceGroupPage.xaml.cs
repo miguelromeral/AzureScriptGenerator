@@ -47,9 +47,23 @@ namespace Universal.Views
         {
             pWarning.Visibility = (tsForce.IsOn ? Visibility.Visible : Visibility.Collapsed);
         }
-        
+
+        string previousLocation;
+
         private void TsLocation_Toggled(object sender, RoutedEventArgs e)
         {
+            if (tsLocation.IsOn)
+            {
+                cbLocation.SelectedItem = previousLocation;
+                cbLocation.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                previousLocation = (string) cbLocation.SelectedItem;
+                cbLocation.Visibility = Visibility.Collapsed;
+                viewModel.Location = null;
+            }
+
             cbLocation.Visibility = (tsLocation.IsOn ? Visibility.Visible : Visibility.Collapsed);
         }
 
