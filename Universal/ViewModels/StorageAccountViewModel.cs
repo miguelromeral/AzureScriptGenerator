@@ -1,15 +1,15 @@
-﻿using System;
+﻿using Library;
+using Library.Azure;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Library;
-using Library.Azure;
 
 namespace Universal.ViewModels
 {
-    public class ResourceGroupViewModel : NotificationBase
+    public class StorageAccountViewModel : NotificationBase
     {
         Command _createCommand;
         public Command CreateCommand
@@ -38,30 +38,52 @@ namespace Universal.ViewModels
             get { return _updateCommand; }
             set { if (SetProperty(ref _updateCommand, value)) RaisePropertyChanged(nameof(Update)); }
         }
-        
 
-        public ObservableCollection<string> Locations;
 
-        bool _force;
-        public bool Force
+        string _resourcegroup;
+        public string ResourceGroup
         {
-            get { return _force; }
-            set { if (SetProperty(ref _force, value))
+            get { return _resourcegroup; }
+            set
+            {
+                if (SetProperty(ref _resourcegroup, value))
                 {
-                    RaisePropertyChanged(nameof(Force));
+                    RaisePropertyChanged(nameof(ResourceGroup));
                     Update();
                 }
             }
         }
 
+
         string _name;
-        public string Name { get { return _name; } set {
+        public string Name
+        {
+            get { return _name; }
+            set
+            {
                 if (SetProperty(ref _name, value))
                 {
                     RaisePropertyChanged(nameof(Name));
                     Update();
                 }
-            } }
+            }
+        }
+
+        string _selectedSKU;
+        public string SelectedSKU
+        {
+            get { return _selectedSKU; }
+            set
+            {
+                if (SetProperty(ref _selectedSKU, value))
+                {
+                    RaisePropertyChanged(nameof(SelectedSKU));
+                    Update();
+                }
+            }
+        }
+
+        public ObservableCollection<string> Skus;
 
         string _location;
         public string Location
@@ -77,12 +99,17 @@ namespace Universal.ViewModels
             }
         }
 
-        public ResourceGroupViewModel()
+        public ObservableCollection<string> Locations;
+
+
+        public StorageAccountViewModel()
         {
+            Skus = new ObservableCollection<string>();
             Locations = new ObservableCollection<string>();
+            FillSKU();
             FillLocations();
         }
-        
+
         private void FillLocations()
         {
             Locations.Clear();
@@ -92,27 +119,42 @@ namespace Universal.ViewModels
                 list.Add(EnumHelper.GetLocationDescription(l));
             }
             list.Sort();
-            foreach(var e in list)
+            foreach (var e in list)
             {
                 Locations.Add(e);
             }
         }
 
+        private void FillSKU()
+        {
+            Skus.Clear();
+            var list = new List<string>();
+            foreach (var sku in (SKU[])Enum.GetValues(typeof(SKU)))
+            {
+                list.Add(EnumHelper.GetSKUDescription(sku));
+            }
+            list.Sort();
+            foreach (var e in list)
+            {
+                Skus.Add(e);
+            }
+        }
+
         public void Update()
         {
-            if (String.IsNullOrEmpty(Name))
+            if (String.IsNullOrEmpty(ResourceGroup) || String.IsNullOrEmpty(Name) || String.IsNullOrEmpty(SelectedSKU) || String.IsNullOrEmpty(Location))
             {
                 CreateCommand = null;
-                ReadCommand = null;
-                UpdateCommand = null;
-                DeleteCommand = null;
+                //ReadCommand = null;
+                //UpdateCommand = null;
+                //DeleteCommand = null;
             }
             else
             {
-                CreateCommand = Generator.CreateResourceGroup(Name, Force, Location);
-                ReadCommand = Generator.ReadResourceGroup(Name, Location);
-                UpdateCommand = Generator.UpdateResourceGroup(Name);
-                DeleteCommand = Generator.DeleteResourceGroup(Name, Force);
+                CreateCommand = Generator.CreateStorageAccount(ResourceGroup, Name, EnumHelper.GetSKUByAttribute(SelectedSKU), Location);
+                //ReadCommand = Generator.ReadResourceGroup(Name, Location);
+                //UpdateCommand = Generator.UpdateResourceGroup(Name);
+                //DeleteCommand = Generator.DeleteResourceGroup(Name, Force);
             }
         }
     }

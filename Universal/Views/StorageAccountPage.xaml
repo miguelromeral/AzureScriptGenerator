@@ -1,12 +1,12 @@
-﻿<Page x:Class="Universal.Views.ResourceGroupPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:local="using:Universal.Views"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:viewModels="using:ViewModels"
-      mc:Ignorable="d"
-      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+﻿<Page
+    x:Class="Universal.Views.StorageAccountPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Universal.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
         <ScrollViewer>
@@ -16,16 +16,14 @@
 
                 <StackPanel Orientation="Horizontal">
 
-                    <Image Source="../Assets/Resource Groups.png"
-                           Style="{StaticResource ImageIcon}"/>
-                    
-                    <TextBlock Style="{StaticResource PageTitle}">
-                        Resources Groups
-                    </TextBlock>
-                    
-                </StackPanel>
+                    <Image Source="../Assets/Storage Accounts.png"
+                           Style="{StaticResource ImageIcon}" />
 
-                            
+                    <TextBlock Style="{StaticResource PageTitle}">
+                        Storage Accounts
+                    </TextBlock>
+
+                </StackPanel>
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -45,68 +43,45 @@
 
                             <StackPanel Style="{StaticResource SubsectionPanel}">
 
-                                <TextBox Name="tbName"
-                                         KeyUp="TbName_KeyUp"
+                                <TextBox Name="tbResourceGroupName"
+                                         KeyUp="TbResourceGroupName_KeyUp"
                                          Header="Select a name for the Resource Group:"
-                                         PlaceholderText="Name" />
+                                         PlaceholderText="Resource Group Name" />
 
                             </StackPanel>
-
-                            <!-- Force Creation -->
+                            <!-- Name of the SA -->
 
                             <StackPanel Style="{StaticResource SubsectionPanel}">
 
-                                    <!-- Control -->
+                                <TextBox Name="tbName"
+                                         KeyUp="TbName_KeyUp"
+                                         Header="Select a unique name for the Storage Account (3 to 24 char.):"
+                                         PlaceholderText="Name"
+                                         MaxLength="24" />
 
-                                    <StackPanel Grid.Column="0">
-                                        <ToggleSwitch Name="tsForce"
-                                                      Header="Force creation"
-                                                      OffContent="No"
-                                                      OnContent="Yes"
-                                                      IsOn="{x:Bind viewModel.Force, Mode=TwoWay}"
-                                                      Toggled="TsForce_Toggled" />
+                            </StackPanel>
+                            
+                            <!-- SKU -->
 
-                                        <TextBlock>Forces the command to run without asking for user confirmation.</TextBlock>
-                                    </StackPanel>
+                            <StackPanel Style="{StaticResource SubsectionPanel}">
 
-                                    <!-- Warning message -->
-
-                                    <StackPanel Grid.Column="1">
-                                        <StackPanel Name="pWarning"
-                                                    Visibility="Collapsed"
-                                                    Style="{StaticResource WarningPanel}">
-
-                                            <TextBlock Style="{StaticResource WarningIcon}">&#xE7BA;</TextBlock>
-
-                                            <TextBlock Style="{StaticResource WarningText}">If a resource group that has that name already exists, the command prompts you for confirmation before performs the operation.</TextBlock>
-
-                                        </StackPanel>
-                                    </StackPanel>
-
-
+                                <ComboBox Name="cbSKU"
+                                          SelectedItem="{x:Bind viewModel.SelectedSKU, Mode=TwoWay}"
+                                          Header="Choose a SKU:"
+                                          HorizontalAlignment="Stretch"
+                                          ItemsSource="{x:Bind viewModel.Skus}" />
+                                
                             </StackPanel>
 
                             <!-- Location Control -->
 
-                            <StackPanel Grid.Row="1"
-                                        Grid.Column="0">
-                                <StackPanel Style="{StaticResource SubsectionPanel}">
+                            <StackPanel Style="{StaticResource SubsectionPanel}">
 
-                                    <ToggleSwitch Name="tsLocation"
-                                                  Header="Add location"
-                                                  OffContent="No"
-                                                  OnContent="Yes"
-                                                  IsOn="False"
-                                                  Toggled="TsLocation_Toggled" />
-
-                                    <ComboBox Name="cbLocation"
-                                              SelectedItem="{x:Bind viewModel.Location, Mode=TwoWay}"
-                                              Visibility="Collapsed"
-                                              Header="Choose a location"
-                                              HorizontalAlignment="Stretch"
-                                              ItemsSource="{x:Bind viewModel.Locations}" />
-
-                                </StackPanel>
+                                <ComboBox Name="cbLocation"
+                                          SelectedItem="{x:Bind viewModel.Location, Mode=TwoWay}"
+                                          Header="Choose a location"
+                                          HorizontalAlignment="Stretch"
+                                          ItemsSource="{x:Bind viewModel.Locations}" />
 
                             </StackPanel>
 
@@ -161,7 +136,6 @@
                             </Grid>
 
                         </StackPanel>
-                        
 
                         <!-- Read Panel -->
 
@@ -186,7 +160,6 @@
                                     </StackPanel>
 
                                 </StackPanel>
-
 
                                 <!-- Copy Panel -->
 
@@ -294,7 +267,6 @@
                                     </StackPanel>
                                 </StackPanel>
 
-
                                 <!-- Copy Panel -->
 
                                 <StackPanel Grid.Row="1"
@@ -331,10 +303,9 @@
                         </StackPanel>
 
                     </StackPanel>
-                    
+
                 </Grid>
-                
-                
+
             </StackPanel>
         </ScrollViewer>
     </Grid>

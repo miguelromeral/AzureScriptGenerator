@@ -70,7 +70,7 @@ namespace Universal.Views
         private void TbName_KeyUp(object sender, KeyRoutedEventArgs e)
         {
             viewModel.Name = tbName.Text;
-            viewModel.UpdateCommand();
+            viewModel.Update();
         }
 
         private void BCopyDelete_Click(object sender, RoutedEventArgs e)
@@ -81,6 +81,10 @@ namespace Universal.Views
         private void BCopyRead_Click(object sender, RoutedEventArgs e)
         {
             PageHelper.CopyContent(tbRead.Text);
+        }
+        private void BCopyUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            PageHelper.CopyContent(tbUpdate.Text);
         }
     }
 }

@@ -22,7 +22,15 @@ namespace Library
         CreateRG,
         [Cmdlet(Command = "Get-AzureRmResourceGroup")]
         ReadRG,
+        [Cmdlet(Command = "Set-AzureRmResourceGroup")]
+        UpdateRG,
         [Cmdlet(Command = "Remove-AzureRmResourceGroup")]
         DeleteRG,
+
+
+        // ------------------- RESOURCES GROUPS ---------------------------
+        [Cmdlet(Command = "New-AzureRmStorageAccount")]
+        CreateSA,
     }
+    
 }

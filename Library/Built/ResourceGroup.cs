@@ -24,6 +24,9 @@ namespace Library.Built
                 case Operation.Read:
                     Command = EnumHelper.GetCommand(Cmdlet.ReadRG);
                     break;
+                case Operation.Update:
+                    Command = EnumHelper.GetCommand(Cmdlet.UpdateRG);
+                    break;
                 case Operation.Delete:
                     Command = EnumHelper.GetCommand(Cmdlet.DeleteRG);
                     break;
@@ -33,7 +36,7 @@ namespace Library.Built
                         break;
             }
 
-            AddArgument(arg_resourcegroupname, name);
+            AddArgument(arg_resourcegroupname, Helper.AddQuotes(name));
         }
 
         public static bool MatchNamePattern(string name)

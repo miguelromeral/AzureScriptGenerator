@@ -41,13 +41,13 @@ namespace Universal
             // set the initial SelectedItem
             foreach (NavigationViewItemBase item in nvTopLevelNav.MenuItems)
             {
-                if (item is NavigationViewItem && item.Tag.ToString() == "ResourceGroup_Page")
+                if (item is NavigationViewItem && item.Tag.ToString() == "StorageAccount_Page")
                 {
                     nvTopLevelNav.SelectedItem = item;
                     break;
                 }
             }
-            contentFrame.Navigate(typeof(ResourceGroupPage));
+            contentFrame.Navigate(typeof(StorageAccountPage));
         }
 
         private void nvTopLevelNav_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
@@ -70,9 +70,13 @@ namespace Universal
                     {
                         contentFrame.Navigate(typeof(HomePage));
                     }
-                    else if(tag == (string) Resources["nav_resourcegroup"])
+                    else if (tag == (string)Resources["nav_resourcegroup"])
                     {
                         contentFrame.Navigate(typeof(ResourceGroupPage));
+                    }
+                    else if (tag == (string)Resources["nav_storageaccount"])
+                    {
+                        contentFrame.Navigate(typeof(StorageAccountPage));
                     }
                 }
             }

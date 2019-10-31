@@ -38,6 +38,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Argument.cs" />
+    <Compile Include="Azure\SKU.cs" />
+    <Compile Include="Azure\SKUAttribute.cs" />
+    <Compile Include="Built\StorageAccount.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Azure\Location.cs" />
     <Compile Include="Azure\LocationAttribute.cs" />

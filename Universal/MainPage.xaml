@@ -1,15 +1,11 @@
-﻿<Page
-    x:Class="Universal.MainPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Universal"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    
-    
+﻿<Page x:Class="Universal.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:Universal"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
         <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground"
@@ -24,8 +20,9 @@
 
         <x:String x:Key="nav_home">Nav_Home</x:String>
         <x:String x:Key="nav_resourcegroup">Nav_ResourceGroup</x:String>
+        <x:String x:Key="nav_storageaccount">Nav_StorageAccount</x:String>
     </Page.Resources>
-    
+
     <Grid>
         <NavigationView x:Name="nvTopLevelNav"
                         Loaded="nvTopLevelNav_Loaded"
@@ -41,11 +38,23 @@
                 </NavigationViewItem>
                 <NavigationViewItem Tag="ResourceGroup_Page">
                     <NavigationViewItem.Icon>
+
                         <BitmapIcon UriSource="Assets\Resource Groups.png"
+                                    MinHeight="32"
+                                    MinWidth="32"
+                                    HorizontalAlignment="Stretch"
+                                    Margin="0,0,0,0"
+                                    VerticalAlignment="Stretch" />
+                    </NavigationViewItem.Icon>
+                    <TextBlock Tag="{StaticResource nav_resourcegroup}">Resources Groups</TextBlock>
+                </NavigationViewItem>
+                <NavigationViewItem Tag="StorageAccount_Page">
+                    <NavigationViewItem.Icon>
+                        <BitmapIcon UriSource="Assets\Storage Accounts.png"
                                     MinHeight="32"
                                     MinWidth="32" />
                     </NavigationViewItem.Icon>
-                    <TextBlock Tag="{StaticResource nav_resourcegroup}">Resources Groups</TextBlock>
+                    <TextBlock Tag="{StaticResource nav_storageaccount}">Storage Accounts</TextBlock>
                 </NavigationViewItem>
             </NavigationView.MenuItems>
             <Frame x:Name="contentFrame"></Frame>

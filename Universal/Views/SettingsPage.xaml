@@ -11,16 +11,61 @@
     <Grid>
 
         <ScrollViewer>
-            <StackPanel>
-
-                <ToggleSwitch Name="tglAppTheme"
-                              Header="Theme"
-                              OffContent="Light"
-                              OnContent="Dark"
-                              IsOn="False"
-                              Toggled="ToggleSwitch_Toggled" />
-
-            </StackPanel>
         </ScrollViewer>
+
+            <ScrollViewer>
+                <StackPanel Style="{StaticResource MainPanel}">
+
+                    <!-- Title -->
+
+                    <StackPanel Orientation="Horizontal">
+
+                        <TextBlock Style="{StaticResource HamburguerIcon}"
+                                   Margin="0,0,15,0"
+                                   VerticalAlignment="Center">
+                            &#xE115;
+                        </TextBlock>
+                        
+                        <TextBlock Style="{StaticResource PageTitle}">
+                        Settings
+                        </TextBlock>
+
+                    </StackPanel>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+
+                            <!-- General Data Panel -->
+
+                            <StackPanel Style="{StaticResource SectionPanel}">
+
+                                <TextBlock Style="{StaticResource SectionTitle}">Arguments</TextBlock>
+
+                                <!-- Theme -->
+
+                            <StackPanel Style="{StaticResource SubsectionPanel}">
+
+                                <ToggleSwitch Name="tglAppTheme"
+                                              Header="Theme"
+                                              OffContent="Light"
+                                              OnContent="Dark"
+                                              IsOn="False"
+                                              Toggled="ToggleSwitch_Toggled" />
+
+                            </StackPanel>
+                        </StackPanel>
+
+                        </StackPanel>
+
+                    </Grid>
+
+                </StackPanel>
+            </ScrollViewer>
+        
     </Grid>
 </Page>

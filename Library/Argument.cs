@@ -10,6 +10,9 @@ namespace Library
     {
         public static string FORCE = "-Force";
         public static string LOCATION = "-Location";
+        public static string NAME = "-Name";
+        public static string RESOURCEGROUP_NAME = "-ResourceGroupName";
+
 
         public string Variable { get; set; }
 

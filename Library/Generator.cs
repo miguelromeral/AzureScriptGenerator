@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Library;
+using Library.Azure;
 using Library.Built;
 using Library.Statements;
 
@@ -27,7 +28,7 @@ namespace Library
             if (!ResourceGroup.MatchNamePattern(name))
                 return null;
 
-            var rg = new ResourceGroup(Operation.Create, Helper.AddQuotes(name));
+            var rg = new ResourceGroup(Operation.Create, name);
             if (force)
             {
                 rg.AddArgument(Argument.FORCE);
@@ -44,7 +45,7 @@ namespace Library
             if (!ResourceGroup.MatchNamePattern(name))
                 return null;
 
-            var rg = new ResourceGroup(Operation.Read, Helper.AddQuotes(name));
+            var rg = new ResourceGroup(Operation.Read, name);
 
             if (!String.IsNullOrEmpty(location))
             {
@@ -53,18 +54,38 @@ namespace Library
             return rg;
         }
 
+        public static ResourceGroup UpdateResourceGroup(string name)
+        {
+            if (!ResourceGroup.MatchNamePattern(name))
+                return null;
+
+            var rg = new ResourceGroup(Operation.Update, name);
+            return rg;
+        }
+
         public static ResourceGroup DeleteResourceGroup(string name, bool force = false)
         {
             if (!ResourceGroup.MatchNamePattern(name))
                 return null;
 
-            var rg = new ResourceGroup(Operation.Delete, Helper.AddQuotes(name));
+            var rg = new ResourceGroup(Operation.Delete, name);
             if (force)
             {
                 rg.AddArgument(Argument.FORCE);
             }
             return rg;
         }
+
+        public static StorageAccount CreateStorageAccount(string resourcegroup, string name, SKU sku, string location)
+        {
+            if (!ResourceGroup.MatchNamePattern(resourcegroup) || !StorageAccount.MatchNamePattern(name))
+                return null;
+
+            var sa = new StorageAccount(Operation.Create, resourcegroup, name, sku, location);
+            return sa;
+        }
+
+
 
         public static List<Command> CheckIfModuleExists(string module, string variablename, bool installifnot = true)
         {

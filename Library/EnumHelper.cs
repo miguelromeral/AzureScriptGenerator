@@ -23,7 +23,8 @@ namespace Library
             return attr != null ? attr.Command : string.Empty;
         }
 
-        public static string GetLocationDescription(Location enumVal){
+        public static string GetLocationDescription(Location enumVal)
+        {
             return GetAttributeOfType<LocationAttribute>(enumVal)?.Description;
         }
 
@@ -35,6 +36,21 @@ namespace Library
                     return l;
             }
             return Location.eastus;
+        }
+
+        public static string GetSKUDescription(SKU enumVal)
+        {
+            return GetAttributeOfType<SKUAttribute>(enumVal)?.Description;
+        }
+
+        public static SKU GetSKUByAttribute(string attr)
+        {
+            foreach (var sku in (SKU[])Enum.GetValues(typeof(SKU)))
+            {
+                if (attr == GetAttributeOfType<SKUAttribute>(sku)?.Description)
+                    return sku;
+            }
+            return SKU.Standard_LRS;
         }
     }
 }
