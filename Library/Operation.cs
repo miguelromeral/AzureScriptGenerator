@@ -11,6 +11,6 @@ namespace Library
         Create,
         Read,
         Update,
-        Remove
+        Delete
     }
 }

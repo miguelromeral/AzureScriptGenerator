@@ -38,12 +38,27 @@ namespace Library
             }
             return rg;
         }
-        public static ResourceGroup RemoveResourceGroup(string name, bool force = false)
+
+        public static ResourceGroup ReadResourceGroup(string name, string location = "")
         {
             if (!ResourceGroup.MatchNamePattern(name))
                 return null;
 
-            var rg = new ResourceGroup(Operation.Remove, Helper.AddQuotes(name));
+            var rg = new ResourceGroup(Operation.Read, Helper.AddQuotes(name));
+
+            if (!String.IsNullOrEmpty(location))
+            {
+                rg.AddArgument(Argument.LOCATION, Helper.AddQuotes(location));
+            }
+            return rg;
+        }
+
+        public static ResourceGroup DeleteResourceGroup(string name, bool force = false)
+        {
+            if (!ResourceGroup.MatchNamePattern(name))
+                return null;
+
+            var rg = new ResourceGroup(Operation.Delete, Helper.AddQuotes(name));
             if (force)
             {
                 rg.AddArgument(Argument.FORCE);

@@ -21,8 +21,11 @@ namespace Library.Built
         {
             switch (operation)
             {
-                case Operation.Remove:
-                    Command = EnumHelper.GetCommand(Cmdlet.RemoveRG);
+                case Operation.Read:
+                    Command = EnumHelper.GetCommand(Cmdlet.ReadRG);
+                    break;
+                case Operation.Delete:
+                    Command = EnumHelper.GetCommand(Cmdlet.DeleteRG);
                     break;
                 // Already done
                 case Operation.Create:

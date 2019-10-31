@@ -18,11 +18,18 @@ namespace Universal.ViewModels
             set { if (SetProperty(ref _createCommand, value)) RaisePropertyChanged(nameof(CreateCommand)); }
         }
 
-        Command _removeCommand;
-        public Command RemoveCommand
+        Command _deleteCommand;
+        public Command DeleteCommand
         {
-            get { return _removeCommand; }
-            set { if (SetProperty(ref _removeCommand, value)) RaisePropertyChanged(nameof(RemoveCommand)); }
+            get { return _deleteCommand; }
+            set { if (SetProperty(ref _deleteCommand, value)) RaisePropertyChanged(nameof(DeleteCommand)); }
+        }
+
+        Command _readCommand;
+        public Command ReadCommand
+        {
+            get { return _readCommand; }
+            set { if (SetProperty(ref _readCommand, value)) RaisePropertyChanged(nameof(ReadCommand)); }
         }
 
         public ObservableCollection<string> Locations;
@@ -88,12 +95,14 @@ namespace Universal.ViewModels
             if (String.IsNullOrEmpty(Name))
             {
                 CreateCommand = null;
-                RemoveCommand = null;
+                DeleteCommand = null;
+                ReadCommand = null;
             }
             else
             {
                 CreateCommand = Generator.CreateResourceGroup(Name, Force, Location);
-                RemoveCommand = Generator.RemoveResourceGroup(Name, Force);
+                DeleteCommand = Generator.DeleteResourceGroup(Name, Force);
+                ReadCommand = Generator.ReadResourceGroup(Name, Location);
             }
         }
     }

@@ -20,7 +20,9 @@ namespace Library
         // ------------------- RESOURCES GROUPS ---------------------------
         [Cmdlet(Command= "New-AzureRmResourceGroup")]
         CreateRG,
+        [Cmdlet(Command = "Get-AzureRmResourceGroup")]
+        ReadRG,
         [Cmdlet(Command = "Remove-AzureRmResourceGroup")]
-        RemoveRG,
+        DeleteRG,
     }
 }

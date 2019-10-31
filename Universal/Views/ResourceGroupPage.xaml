@@ -1,41 +1,42 @@
-﻿<Page
-    x:Class="Universal.Views.ResourceGroupPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Universal.Views"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:viewModels="using:ViewModels"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <Page.Resources>
-        <x:String x:Key="nav_create">Nav_Create</x:String>
-        <x:String x:Key="nav_read">Nav_Read</x:String>
-        <x:String x:Key="nav_update">Nav_Update</x:String>
-        <x:String x:Key="nav_delete">Nav_Delete</x:String>
-    </Page.Resources>
+﻿<Page x:Class="Universal.Views.ResourceGroupPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:Universal.Views"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:viewModels="using:ViewModels"
+      mc:Ignorable="d"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
         <ScrollViewer>
-        <StackPanel Style="{StaticResource MainPanel}">
+            <StackPanel Style="{StaticResource MainPanel}">
 
-            <TextBlock Style="{StaticResource PageTitle}">
+                <!-- Title -->
+
+                <TextBlock Style="{StaticResource PageTitle}">
                 Resources Groups
-            </TextBlock>
+                </TextBlock>
 
-            <StackPanel Style="{StaticResource HeaderPanel}">
+                <!-- General Data Panel -->
 
+                <StackPanel Style="{StaticResource HeaderPanel}">
+
+                    <TextBlock Style="{StaticResource SectionTitle}">General Data</TextBlock>
+
+                    <!-- Name of the RG -->
+                    
                     <StackPanel Style="{StaticResource SubsectionPanel}">
-
-                        <TextBlock Style="{StaticResource SectionTitle}">General Data</TextBlock>
-
+                        
                         <TextBox Name="tbName"
                                  KeyUp="TbName_KeyUp"
                                  Header="Select a name for the Resource Group:"
                                  PlaceholderText="Name" />
-                        
+
                     </StackPanel>
+                    
+                    <!-- Force Creation -->
+                    
                     <StackPanel Style="{StaticResource SubsectionPanel}">
 
                         <Grid>
@@ -44,6 +45,8 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
+                            <!-- Control -->
+                            
                             <StackPanel Grid.Column="0">
                                 <ToggleSwitch Name="tsForce"
                                               Header="Force creation"
@@ -54,6 +57,9 @@
 
                                 <TextBlock>Forces the command to run without asking for user confirmation.</TextBlock>
                             </StackPanel>
+                            
+                            <!-- Warning message -->
+                            
                             <StackPanel Grid.Column="1">
                                 <StackPanel Name="pWarning"
                                             Visibility="Collapsed"
@@ -67,33 +73,33 @@
                             </StackPanel>
 
                         </Grid>
+
+                    </StackPanel>
+
+                </StackPanel>
+
+                <!-- Create Panel -->
+                
+                <StackPanel Style="{StaticResource SectionPanel}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0"
+                                    Grid.ColumnSpan="2">
+
+                            <TextBlock Style="{StaticResource SectionTitle}">Create</TextBlock>
+
+                        </StackPanel>
+
+                        <!-- Location Control -->
                         
-
-                    </StackPanel>
-                
-                
-                
-
-            </StackPanel>
-
-            <StackPanel Style="{StaticResource SectionPanel}">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="auto" />
-                    </Grid.RowDefinitions>
-
-                    <StackPanel Grid.Row="0"
-                                Grid.ColumnSpan="2">
-
-                        <TextBlock Style="{StaticResource SectionTitle}">Create</TextBlock>
-
-                    </StackPanel>
-
                         <StackPanel Grid.Row="1"
                                     Grid.Column="0">
                             <StackPanel Style="{StaticResource SubsectionPanel}">
@@ -104,52 +110,54 @@
                                               OnContent="Yes"
                                               IsOn="False"
                                               Toggled="TsLocation_Toggled" />
-                                
+
                                 <ComboBox Name="cbLocation"
                                           SelectedItem="{x:Bind viewModel.Location, Mode=TwoWay}"
                                           Visibility="Collapsed"
                                           Header="Choose a location"
                                           HorizontalAlignment="Stretch"
-                                          ItemsSource="{x:Bind viewModel.Locations}"/>
+                                          ItemsSource="{x:Bind viewModel.Locations}" />
 
                             </StackPanel>
-                        
-                            
+
                         </StackPanel>
+                        
+                        <!-- Copy Panel -->
 
-                    
-                    
-                    <StackPanel Grid.Row="1"
-                                Grid.Column="1"
-                        Style="{StaticResource CopyPanel}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="1"
+                                    Grid.Column="1"
+                                    Style="{StaticResource CopyPanel}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
 
-                            <StackPanel Grid.Row="0"
-                                        HorizontalAlignment="Right">
+                                <!-- Copy Button -->
+                                
+                                <StackPanel Grid.Row="0"
+                                            HorizontalAlignment="Right">
                                     <Button Name="bCopyCreate"
                                             Style="{StaticResource ButtonCopy}"
                                             Click="BCopyCreate_Click" />
-                            </StackPanel>
+                                </StackPanel>
 
-                            <TextBox Grid.Row="1"
-                                     Name="tbCreate"
-                                     Style="{StaticResource OutputTextBox}"
-                                     Text="{x:Bind viewModel.CreateCommand, Mode=OneWay}">
-                            </TextBox>
+                                <!-- Output Text -->
+                                
+                                <TextBox Grid.Row="1"
+                                         Name="tbCreate"
+                                         Style="{StaticResource OutputTextBox}"
+                                         Text="{x:Bind viewModel.CreateCommand, Mode=OneWay}">
+                                </TextBox>
 
-                        </Grid>
-                    </StackPanel>
+                            </Grid>
+                        </StackPanel>
 
-                </Grid>
-                
-                
-                
-                
-            </StackPanel>
+                    </Grid>
+
+                </StackPanel>
+
+                <!-- Read Panel -->
 
                 <StackPanel Style="{StaticResource SectionPanel}">
                     <Grid>
@@ -165,9 +173,11 @@
                         <StackPanel Grid.Row="0"
                                     Grid.ColumnSpan="2">
 
-                            <TextBlock Style="{StaticResource SectionTitle}">Remove</TextBlock>
+                            <TextBlock Style="{StaticResource SectionTitle}">Read</TextBlock>
 
                         </StackPanel>
+
+                        <!-- ???? -->
 
                         <StackPanel Grid.Row="1"
                                     Grid.Column="0">
@@ -176,6 +186,8 @@
                             </StackPanel>
 
                         </StackPanel>
+
+                        <!-- Copy Panel -->
 
                         <StackPanel Grid.Row="1"
                                     Grid.Column="1"
@@ -186,17 +198,87 @@
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
 
+                                <!-- Copy Button -->
+
                                 <StackPanel Grid.Row="0"
                                             HorizontalAlignment="Right">
-                                    <Button Name="bCopyRemove"
+
+                                    <Button Name="bCopyRead"
                                             Style="{StaticResource ButtonCopy}"
-                                            Click="BCopyRemove_Click" />
+                                            Click="BCopyRead_Click" />
                                 </StackPanel>
 
+                                <!-- Ouput Text -->
+
                                 <TextBox Grid.Row="1"
-                                         Name="tbRemove"
+                                         Name="tbRead"
                                          Style="{StaticResource OutputTextBox}"
-                                         Text="{x:Bind viewModel.RemoveCommand, Mode=OneWay}">
+                                         Text="{x:Bind viewModel.ReadCommand, Mode=OneWay}">
+                                </TextBox>
+
+                            </Grid>
+                        </StackPanel>
+
+                    </Grid>
+
+                </StackPanel>
+                <!-- Delete Panel -->
+
+                <StackPanel Style="{StaticResource SectionPanel}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0"
+                                    Grid.ColumnSpan="2">
+
+                            <TextBlock Style="{StaticResource SectionTitle}">Delete</TextBlock>
+
+                        </StackPanel>
+
+                        <!-- ???? -->
+
+                        <StackPanel Grid.Row="1"
+                                    Grid.Column="0">
+                            <StackPanel Style="{StaticResource SubsectionPanel}">
+
+                            </StackPanel>
+
+                        </StackPanel>
+
+                        <!-- Copy Panel -->
+
+                        <StackPanel Grid.Row="1"
+                                    Grid.Column="1"
+                                    Style="{StaticResource CopyPanel}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <!-- Copy Button -->
+
+                                <StackPanel Grid.Row="0"
+                                            HorizontalAlignment="Right">
+
+                                    <Button Name="bCopyDelete"
+                                            Style="{StaticResource ButtonCopy}"
+                                            Click="BCopyDelete_Click" />
+                                </StackPanel>
+
+                                <!-- Ouput Text -->
+
+                                <TextBox Grid.Row="1"
+                                         Name="tbDelete"
+                                         Style="{StaticResource OutputTextBox}"
+                                         Text="{x:Bind viewModel.DeleteCommand, Mode=OneWay}">
                                 </TextBox>
 
                             </Grid>

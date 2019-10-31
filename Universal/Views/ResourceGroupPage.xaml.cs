@@ -59,9 +59,14 @@ namespace Universal.Views
             viewModel.UpdateCommand();
         }
 
-        private void BCopyRemove_Click(object sender, RoutedEventArgs e)
+        private void BCopyDelete_Click(object sender, RoutedEventArgs e)
         {
-            PageHelper.CopyContent(tbRemove.Text);
+            PageHelper.CopyContent(tbDelete.Text);
+        }
+
+        private void BCopyRead_Click(object sender, RoutedEventArgs e)
+        {
+            PageHelper.CopyContent(tbRead.Text);
         }
     }
 }
