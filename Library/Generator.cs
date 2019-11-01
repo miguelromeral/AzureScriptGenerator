@@ -85,6 +85,17 @@ namespace Library
             return sa;
         }
 
+        public static StorageAccount DeleteStorageAccount(string resourcegroup, string name)
+        {
+            if (!ResourceGroup.MatchNamePattern(resourcegroup) || !StorageAccount.MatchNamePattern(name))
+                return null;
+
+            var sa = new StorageAccount(resourcegroup, name);
+            return sa;
+        }
+
+
+
 
 
         public static List<Command> CheckIfModuleExists(string module, string variablename, bool installifnot = true)

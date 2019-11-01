@@ -40,6 +40,13 @@ namespace Library.Built
             AddArgument(Argument.LOCATION, Helper.AddQuotes(location));
         }
 
+        public StorageAccount(string rg, string name) :
+            base(EnumHelper.GetCommand(Cmdlet.DeleteSA))
+        {
+            AddArgument(Argument.RESOURCEGROUP_NAME, Helper.AddQuotes(rg));
+            AddArgument(ACCOUNTNAME, Helper.AddQuotes(name));
+        }
+
         public static bool MatchNamePattern(string name)
         {
             Regex regex = new Regex(NAME_PATTERN);

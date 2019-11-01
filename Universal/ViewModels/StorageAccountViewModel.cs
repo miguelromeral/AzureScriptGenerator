@@ -142,19 +142,27 @@ namespace Universal.ViewModels
 
         public void Update()
         {
-            if (String.IsNullOrEmpty(ResourceGroup) || String.IsNullOrEmpty(Name) || String.IsNullOrEmpty(SelectedSKU) || String.IsNullOrEmpty(Location))
+            if (String.IsNullOrEmpty(ResourceGroup) || String.IsNullOrEmpty(Name))
             {
                 CreateCommand = null;
                 //ReadCommand = null;
                 //UpdateCommand = null;
-                //DeleteCommand = null;
+                DeleteCommand = null;
             }
             else
             {
-                CreateCommand = Generator.CreateStorageAccount(ResourceGroup, Name, EnumHelper.GetSKUByAttribute(SelectedSKU), Location);
+                if(String.IsNullOrEmpty(SelectedSKU) || String.IsNullOrEmpty(Location))
+                {
+                    CreateCommand = null;
+                }
+                else
+                {
+                    CreateCommand = Generator.CreateStorageAccount(ResourceGroup, Name, EnumHelper.GetSKUByAttribute(SelectedSKU), Location);
+                }
+
                 //ReadCommand = Generator.ReadResourceGroup(Name, Location);
                 //UpdateCommand = Generator.UpdateResourceGroup(Name);
-                //DeleteCommand = Generator.DeleteResourceGroup(Name, Force);
+                DeleteCommand = Generator.DeleteStorageAccount(ResourceGroup, Name);
             }
         }
     }
