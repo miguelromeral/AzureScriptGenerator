@@ -81,7 +81,7 @@ namespace Library
             if (!ResourceGroup.MatchNamePattern(resourcegroup) || !StorageAccount.MatchNamePattern(name))
                 return null;
 
-            var sa = new StorageAccount(Operation.Create, resourcegroup, name, sku, location);
+            var sa = new StorageAccount(resourcegroup, name, sku, location);
             return sa;
         }
 
@@ -90,7 +90,29 @@ namespace Library
             if (!ResourceGroup.MatchNamePattern(resourcegroup) || !StorageAccount.MatchNamePattern(name))
                 return null;
 
-            var sa = new StorageAccount(resourcegroup, name);
+            var sa = new StorageAccount(Operation.Delete, resourcegroup, name);
+            return sa;
+        }
+        public static StorageAccount ReadStorageAccount(string resourcegroup, string name)
+        {
+            if (!ResourceGroup.MatchNamePattern(resourcegroup) || !StorageAccount.MatchNamePattern(name))
+                return null;
+
+            var sa = new StorageAccount(Operation.Read, resourcegroup, name);
+            return sa;
+        }
+        public static StorageAccount UpdateStorageAccount(string resourcegroup, string name, string sku)
+        {
+            if (!ResourceGroup.MatchNamePattern(resourcegroup) || !StorageAccount.MatchNamePattern(name))
+                return null;
+
+            var sa = new StorageAccount(Operation.Update, resourcegroup, name);
+
+            if(!String.IsNullOrEmpty(sku))
+            {
+                sa.AddArgument(StorageAccount.TYPE, Helper.AddQuotes(EnumHelper.GetSKUByAttribute(sku).ToString()));
+            }
+
             return sa;
         }
 

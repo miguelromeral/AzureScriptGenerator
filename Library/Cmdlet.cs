@@ -31,6 +31,10 @@ namespace Library
         // ------------------- RESOURCES GROUPS ---------------------------
         [Cmdlet(Command = "New-AzureRmStorageAccount")]
         CreateSA,
+        [Cmdlet(Command = "Get-AzureRmStorageAccount")]
+        ReadSA,
+        [Cmdlet(Command = "Set-AzureRmStorageAccount")]
+        UpdateSA,
         [Cmdlet(Command = "Remove-AzureRmStorageAccount")]
         DeleteSA,
     }

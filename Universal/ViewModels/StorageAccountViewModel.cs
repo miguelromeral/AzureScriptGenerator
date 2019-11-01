@@ -145,8 +145,8 @@ namespace Universal.ViewModels
             if (String.IsNullOrEmpty(ResourceGroup) || String.IsNullOrEmpty(Name))
             {
                 CreateCommand = null;
-                //ReadCommand = null;
-                //UpdateCommand = null;
+                ReadCommand = null;
+                UpdateCommand = null;
                 DeleteCommand = null;
             }
             else
@@ -160,8 +160,8 @@ namespace Universal.ViewModels
                     CreateCommand = Generator.CreateStorageAccount(ResourceGroup, Name, EnumHelper.GetSKUByAttribute(SelectedSKU), Location);
                 }
 
-                //ReadCommand = Generator.ReadResourceGroup(Name, Location);
-                //UpdateCommand = Generator.UpdateResourceGroup(Name);
+                ReadCommand = Generator.ReadStorageAccount(ResourceGroup, Name);
+                UpdateCommand = Generator.UpdateStorageAccount(ResourceGroup, Name, SelectedSKU);
                 DeleteCommand = Generator.DeleteStorageAccount(ResourceGroup, Name);
             }
         }

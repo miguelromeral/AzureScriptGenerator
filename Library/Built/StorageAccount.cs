@@ -12,37 +12,37 @@ namespace Library.Built
     {
         public static string ACCOUNTNAME = "-AccountName";
         public static string SKUNAME = "-SkuName";
+        public static string TYPE = "-Type";
         public static string NAME_PATTERN = @"^[a-zA-Z0-9]{3,24}$";
 
-        public StorageAccount(Operation operation, string rg, string name, SKU sku, string location) :
+        public StorageAccount(string rg, string name, SKU sku, string location) :
             base(EnumHelper.GetCommand(Cmdlet.CreateSA))
         {
-            switch (operation)
-            {
-                //case Operation.Read:
-                //    Command = EnumHelper.GetCommand(Cmdlet.ReadRG);
-                //    break;
-                //case Operation.Update:
-                //    Command = EnumHelper.GetCommand(Cmdlet.UpdateRG);
-                //    break;
-                //case Operation.Delete:
-                //    Command = EnumHelper.GetCommand(Cmdlet.DeleteRG);
-                //    break;
-                //// Already done
-                case Operation.Create:
-                default:
-                    break;
-            }
-
             AddArgument(Argument.RESOURCEGROUP_NAME, Helper.AddQuotes(rg));
             AddArgument(ACCOUNTNAME, Helper.AddQuotes(name));
             AddArgument(SKUNAME, sku.ToString());
             AddArgument(Argument.LOCATION, Helper.AddQuotes(location));
         }
 
-        public StorageAccount(string rg, string name) :
+        public StorageAccount(Operation operation, string rg, string name) :
             base(EnumHelper.GetCommand(Cmdlet.DeleteSA))
         {
+
+            switch (operation)
+            {
+                case Operation.Read:
+                    Command = EnumHelper.GetCommand(Cmdlet.ReadSA);
+                    break;
+                case Operation.Update:
+                    Command = EnumHelper.GetCommand(Cmdlet.UpdateSA);
+                    break;
+                case Operation.Delete:
+                    Command = EnumHelper.GetCommand(Cmdlet.DeleteSA);
+                    break;
+                default:
+                    break;
+            }
+
             AddArgument(Argument.RESOURCEGROUP_NAME, Helper.AddQuotes(rg));
             AddArgument(ACCOUNTNAME, Helper.AddQuotes(name));
         }
